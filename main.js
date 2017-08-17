@@ -14,6 +14,8 @@ var bot = new irc.Client("irc.freenode.net", "weakerbot", {
 	debug: true,
 	showErrors: true,
 	password: 'weakness420',
+	username: 'weakerbot',
+	nick: 'weakerbot'
 	sasl: true
 });
 
