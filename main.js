@@ -8,7 +8,7 @@ var pongs = ["ya bitch", "ya dingus", "ya weakling", "ya ugly ass"]
 
 var irc = require("irc");
 
-var bot = new irc.Client("irc.freenode.net", "weakerbot", {
+var bot = new irc.Client("chat.freenode.net", "weakerbot", {
 	channels: ["#weakpots"],
 	realName: 'rowbutt',
 	debug: true,
