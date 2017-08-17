@@ -1,0 +1,23 @@
+{
+  "dependencies": {
+    "irc": "^0.5.2"
+  },
+  "name": "weaker-bot",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chris30269/weaker-bot.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/chris30269/weaker-bot/issues"
+  },
+  "homepage": "https://github.com/chris30269/weaker-bot#readme",
+  "description": ""
+}
