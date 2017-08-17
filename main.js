@@ -1,5 +1,5 @@
 var config = {
-	channels: ["##weakpots"],
+	channels: ["#weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot"
 };
@@ -9,14 +9,14 @@ var pongs = ["ya bitch", "ya dingus", "ya weakling", "ya ugly ass"]
 var irc = require("irc");
 
 var bot = new irc.Client("irc.freenode.net", "weakerbot", {
-	channels: ["##weakpots"],
+	channels: ["#weakpots"],
 	realName: 'rowbutt',
 	debug: true,
 	showErrors: true,
+	sasl: true,
 	password: 'weakness420',
 	username: 'weakerbot',
 	nick: 'weakerbot'
-	sasl: true
 });
 
 // bot.connect(function() {
