@@ -12,8 +12,7 @@ var bot = new irc.Client("irc.freenode.net", "weakerbot", {
 	channels: ["##weakpots"],
 	realName: 'rowbutt',
 	debug: true,
-	sasl: true,
-	showErrors: false,
+	showErrors: true,
 	password: 'weakness420'
 });
 
