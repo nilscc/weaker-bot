@@ -99,7 +99,7 @@ bot.addListener("join", function(channel, who) {
 });
 
 bot.addListener("message", function(from, to, text, message) {
-	if(message.nick.indexOf("robo") > -1) counter.robo++;
+	// if(message.nick.indexOf("robo") > -1) counter.robo++;
 	if(message.nick.indexOf("lari") > -1) counter.lari++;
 	if(counter.robo > 20){
 		bot.say(config.channels[0], message.nick+" "+affection[Math.floor(Math.random() * affection.length)])
