@@ -1,5 +1,5 @@
 var config = {
-	channels: ["##weakpots"],
+	channels: ["###weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
@@ -8,7 +8,7 @@ var config = {
 var pongs = ["ya bitch", "ya dingus", "ya weakling", "ya ugly ass"];
 var greetings = ["Hi", "Hey", "Sup", "What's shaking", "Whaddup", "You actually look OK today", "Hello", "What dat mouf do"];
 var affection = ["I <3 u bb", "never change", "did you do something with your hair? It looks nice", "you smell nice"];
-var bulk = ["ear ur cheese", "doot doot", "what's for lunch"];
+var bulk = ["eat ur cheese", "doot doot", "what's for lunch"];
 var songs = [
 	"You spin me right round bb",
 	"This is the story of a girl",
@@ -130,7 +130,7 @@ bot.addListener("message", function(from, to, text, message) {
 	}
 
 	for (var i = 0; i < greetings.length; i++) {
-		if(config.botName == splitup[1] && greetings[i].toLowerCase() == splitup[0].toLowerCase()){
+		if(config.botName == splitup[1] && greetings[i].toLowerCase() == splitup[0].toLowerCase()){//make it work for multiple words
 			bot.say(config.channels[0], greetings[Math.floor(Math.random() * greetings.length)]+" "+from);
 			lastPerson = from;
 		}
@@ -143,6 +143,10 @@ bot.addListener("message", function(from, to, text, message) {
 		for (var i = 0; i < 9; i++) {
 			bot.say(config.channels[0], from+" HELLO PLS");
 		};
+	}
+	if(message.args[1].toLowerCase().indexOf("doot doot") > -1){
+		if(message.nick.toLowerCase().indexOf("lari") > -1) bot.say(config.channels[0], from+" no u");
+		else bot.say(config.channels[0], from+" thank mr skeletal");
 	}
 });
 
