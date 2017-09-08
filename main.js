@@ -1,5 +1,5 @@
 var config = {
-	channels: ["###weakpots"],
+	channels: ["##weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
@@ -95,7 +95,7 @@ var counter = {
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
-	if(who.indexOf("panny")>-1) bot.say(channel, who + " did you curl today?");
+	if(who.indexOf("panny")>-1) bot.say(channel, who + " what are the curls for today?");
 });
 
 bot.addListener("message", function(from, to, text, message) {
