@@ -148,6 +148,9 @@ bot.addListener("message", function(from, to, text, message) {
 		if(message.nick.toLowerCase().indexOf("lari") > -1) bot.say(config.channels[0], from+" no u");
 		else bot.say(config.channels[0], from+" thank mr skeletal");
 	}
+	if((message.args[1].toLowerCase().indexOf("fuck u weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck you weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck u, weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck you, weakerbot") > -1)){
+		bot.say(config.channels[0], ":(");
+	}
 });
 
 bot.addListener('error', function(message) {
