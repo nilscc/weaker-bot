@@ -67,7 +67,7 @@ var benchMoar = [
 	"what are you doing to make your bench a better place?",
 	"at this rate larimari is going to beat you to 2pl8",
 	"do some upper body work today, for me",
-	"get some bench work in bud"
+	"get some bench work in bud",
 	"BANCHBANCHBANCH"];
 
 var irc = require("irc");
