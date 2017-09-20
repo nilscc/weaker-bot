@@ -51,8 +51,15 @@ var insults = ["you're just a cuckboi in a cuck world",
 	"what's up with your fucking body hair, big shoots? You look like a 12-year-old Dutch girl",
 	"have you shit yourself? You look like you've got an awkward boner",
 	"that's some drunk evolution right there, bud",
-	"dick"];
-var dabEmojis = ["🔥", "💯", "😎", "🍆💦", "👌", "😂"]
+	"dick",
+	"PLEASE HELP ME I'M TRAPPED IN HERE OH GOD"];
+var dabEmojis = ["🔥", "💯", "😎", "🍆💦", "👌", "😂"];
+var curlsForDaGirls = [" what's on the curl menu today?",
+		      " how we pumping up those pythons today?",
+		      " today's the day you curl right?",
+		      " build some of those bis for these guys.",
+		      " what steps are you taking today for bigger biceps?",
+		      " how many hours of arms on the schedule?"];
 
 var irc = require("irc");
 
@@ -98,7 +105,7 @@ var counter = {
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
-	if(who.indexOf("panny")>-1) bot.say(channel, who + " what's on the curl menu today?");
+	if(who.indexOf("panny")>-1) bot.say(channel, who + randomFromArray(curlsForDaGirls));
 });
 
 bot.addListener("message", function(from, to, text, message) {
