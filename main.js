@@ -160,7 +160,7 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		else bot.action(config.channels[0], "dabs on "+from +" "+randomFromArray(dabEmojis));
 	}
-	if((message.args[1].toLowerCase().indexOf("succ") > -1){
+	if(message.args[1].toLowerCase().indexOf("succ") > -1){
 		bot.say(config.channels[0], "S U C C");
 	}
 });
