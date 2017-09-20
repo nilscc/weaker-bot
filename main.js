@@ -1,12 +1,12 @@
 var config = {
-	channels: ["###weakpots"],
+	channels: ["##weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
 };
 
 var pongs = ["ya bitch", "ya dingus", "ya weakling", "ya ugly ass"];
-var greetings = ["Hi", "Hey", "Sup", "What's shaking", "Whaddup", "You actually look OK today", "Hello", "What dat mouf do"];
+var greetings = ["Hi", "Hey", "Sup", "What's shaking", "Whaddup", "You actually look OK today", "Hello", "What dat mouf do", "what's up"];
 var affection = ["I <3 u bb", "never change", "did you do something with your hair? It looks nice", "you smell nice"];
 var bulk = ["eat ur cheese", "doot doot", "what's for lunch"];
 var songs = [
