@@ -1,5 +1,5 @@
 var config = {
-	channels: ["##weakpots"],
+	channels: ["###weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
@@ -52,6 +52,7 @@ var insults = ["you're just a cuckboi in a cuck world",
 	"have you shit yourself? You look like you've got an awkward boner",
 	"that's some drunk evolution right there, bud",
 	"dick"];
+var dabEmojis = ["🔥", "💯", "😎", "🍆💦", "👌", "😂"]
 
 var irc = require("irc");
 
@@ -92,6 +93,8 @@ var counter = {
 
 //nomski
 
+//m'pots
+
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
@@ -102,28 +105,28 @@ bot.addListener("message", function(from, to, text, message) {
 	// if(message.nick.indexOf("robo") > -1) counter.robo++;
 	if(message.nick.indexOf("lari") > -1) counter.lari++;
 	if(counter.robo > 20){
-		bot.say(config.channels[0], message.nick+" "+affection[Math.floor(Math.random() * affection.length)])
+		bot.say(config.channels[0], message.nick+" "+randomFromArray(affection));
 		counter.robo = 0;
 	}
 	if(counter.lari > 20){
-		bot.say(config.channels[0], message.nick+" "+bulk[Math.floor(Math.random() * bulk.length)])
+		bot.say(config.channels[0], message.nick+" "+randomFromArray(bulk));
 		counter.lari = 0;
 	}
 	// console.log("message: ", message);
 	var splitup = message.args[1].split(" ");
 	if(splitup[0].toLowerCase() == "..ping"){
-		bot.say(config.channels[0], message.nick+" pong, "+pongs[Math.floor(Math.random() * pongs.length)]);
+		bot.say(config.channels[0], message.nick+" pong, "+randomFromArray(pongs));
 		lastPerson = message.nick;
 	}
 
 	if(splitup[0].toLowerCase() == "..sing"){
-		bot.say(config.channels[0], "🎵"+songs[Math.floor(Math.random() * songs.length)]+"🎵");
+		bot.say(config.channels[0], "🎵"+randomFromArray(songs)+"🎵");
 	}
 	if(splitup[0].toLowerCase() == "..insult"){
 		if(splitup[1]){
-			bot.say(config.channels[0], splitup[1]+", "+insults[Math.floor(Math.random() * insults.length)]);
+			bot.say(config.channels[0], splitup[1]+", "+randomFromArray(insults));
 		}
-		else bot.say(config.channels[0], from+", "+insults[Math.floor(Math.random() * insults.length)]);
+		else bot.say(config.channels[0], from+", "+randomFromArray(insults));
 	}
 	if(splitup[0].toLowerCase() == "..help"){
 		bot.say(config.channels[0], "..ping, ..sing, ..insult [name]");
@@ -131,7 +134,7 @@ bot.addListener("message", function(from, to, text, message) {
 
 	for (var i = 0; i < greetings.length; i++) {
 		if(config.botName == splitup[1] && greetings[i].toLowerCase() == splitup[0].toLowerCase()){//make it work for multiple words
-			bot.say(config.channels[0], greetings[Math.floor(Math.random() * greetings.length)]+" "+from);
+			bot.say(config.channels[0], randomFromArray(greetings)+" "+from);
 			lastPerson = from;
 		}
 	};
@@ -151,8 +154,18 @@ bot.addListener("message", function(from, to, text, message) {
 	if((message.args[1].toLowerCase().indexOf("fuck u weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck you weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck u, weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck you, weakerbot") > -1)){
 		bot.say(config.channels[0], ":(");
 	}
+	if(splitup[0].toLowerCase() == "..dab"){
+		if(splitup[1]){
+			bot.action(config.channels[0], "dabs on "+splitup[1]+" "+randomFromArray(dabEmojis));
+		}
+		else bot.action(config.channels[0], "dabs on "+from +" "+randomFromArray(dabEmojis));
+	}
 });
 
 bot.addListener('error', function(message) {
     console.log('error: ', message);
 });
+
+function randomFromArray(array){
+	return array[Math.floor(Math.random() * array.length)];
+}
