@@ -62,6 +62,13 @@ var curlsForDaGirls = [
 	"build some of those bis for these guys.",
 	"what steps are you taking today for bigger biceps?",
 	"how many hours of arms on the schedule?"];
+var benchMoar = [
+	"have you worked on your bench today?",
+	"what are you doing to make your bench a better place?",
+	"at this rate larimari is going to beat you to 2pl8",
+	"do some upper body work today, for me",
+	"get some bench work in bud"
+	"BANCHBANCHBANCH"];
 
 var irc = require("irc");
 
@@ -108,6 +115,7 @@ bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
 	if(who.indexOf("panny")>-1) bot.say(channel, who+" "+randomFromArray(curlsForDaGirls));
+	if(who.toLowerCase() == "trefirefem") bot.say(channel, who+" "+randomFromArray(benchMoar));
 });
 
 bot.addListener("message", function(from, to, text, message) {
