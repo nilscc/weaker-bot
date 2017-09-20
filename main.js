@@ -133,7 +133,7 @@ bot.addListener("message", function(from, to, text, message) {
 	}
 
 	for (var i = 0; i < greetings.length; i++) {
-		if(config.botName == splitup[1] && greetings[i].toLowerCase() == splitup[0].toLowerCase()){//make it work for multiple words
+		if(message.args[1].toLowerCase().indexOf(config.botName) >-1 && message.args[1].toLowerCase().indexOf(greetings[i].toLowerCase()) >-1){//might not work for weird order
 			bot.say(config.channels[0], randomFromArray(greetings)+" "+from);
 			lastPerson = from;
 		}
@@ -143,9 +143,9 @@ bot.addListener("message", function(from, to, text, message) {
 		bot.say(config.channels[0], from+" fuckin cuck");
 	}
 	if(message.args[1].toLowerCase().indexOf("hello pls") > -1){
-		for (var i = 0; i < 9; i++) {
+		// for (var i = 0; i < 9; i++) {
 			bot.say(config.channels[0], from+" HELLO PLS");
-		};
+		// };
 	}
 	if(message.args[1].toLowerCase().indexOf("doot doot") > -1){
 		if(message.nick.toLowerCase().indexOf("lari") > -1) bot.say(config.channels[0], from+" no u");
