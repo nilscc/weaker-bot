@@ -26,7 +26,8 @@ var songs = [
 	"never gonna give you up, never gonna let you down, never gonna run around and hurt you",
 	"when you get caught between the moon and NYC, the best that you can do is fall in love",
 	"I'm a barbie girl, in a barbie wooooorld"];
-var insults = ["you're just a cuckboi in a cuck world",
+var insults = [
+	"you're just a cuckboi in a cuck world",
 	"fuck Lemony Snicket, what a serious of unfortunate events you fuckin been through you ugly fuck",
 	"give yer balls a tug ya titfucker",
 	"your aesthetician coif that for ya?",
@@ -54,12 +55,13 @@ var insults = ["you're just a cuckboi in a cuck world",
 	"dick",
 	"PLEASE HELP ME I'M TRAPPED IN HERE OH GOD"];
 var dabEmojis = ["🔥", "💯", "😎", "🍆💦", "👌", "😂"];
-var curlsForDaGirls = ["what's on the curl menu today?",
-		      "how we pumping up those pythons today?",
-		      "today's the day you curl right?",
-		      "build some of those bis for these guys.",
-		      "what steps are you taking today for bigger biceps?",
-		      "how many hours of arms on the schedule?"];
+var curlsForDaGirls = [
+	"what's on the curl menu today?",
+	"how we pumping up those pythons today?",
+	"today's the day you curl right?",
+	"build some of those bis for these guys.",
+	"what steps are you taking today for bigger biceps?",
+	"how many hours of arms on the schedule?"];
 
 var irc = require("irc");
 
