@@ -133,7 +133,7 @@ bot.addListener("message", function(from, to, text, message) {
 	}
 
 	for (var i = 0; i < greetings.length; i++) {
-		if(message.args[1].toLowerCase().indexOf(config.botName) >-1 && message.args[1].toLowerCase().indexOf(greetings[i].toLowerCase()) >-1){//might not work for weird order
+		if(config.botName == splitup[1] && greetings[i].toLowerCase() == splitup[0].toLowerCase()){
 			bot.say(config.channels[0], randomFromArray(greetings)+" "+from);
 			lastPerson = from;
 		}
