@@ -129,7 +129,7 @@ bot.addListener("message", function(from, to, text, message) {
 		else bot.say(config.channels[0], from+", "+randomFromArray(insults));
 	}
 	if(splitup[0].toLowerCase() == "..help"){
-		bot.say(config.channels[0], "..ping, ..sing, ..insult [name]");
+		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name]");
 	}
 
 	for (var i = 0; i < greetings.length; i++) {
