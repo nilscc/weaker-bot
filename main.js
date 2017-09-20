@@ -98,7 +98,7 @@ var counter = {
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
-	if(who.indexOf("panny")>-1) bot.say(channel, who + " what are the curls for today?");
+	if(who.indexOf("panny")>-1) bot.say(channel, who + " what's on the curl menu today?");
 });
 
 bot.addListener("message", function(from, to, text, message) {
