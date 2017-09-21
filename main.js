@@ -186,7 +186,7 @@ bot.addListener("message", function(from, to, text, message) {
 			counter.tre += 1;
 		}
 		if (counter.tre == 4){
-			bot.say(config.channels[0], from+" jesus fuck off already");
+			bot.say(config.channels[0], "jesus fuck off already "+from);
 			counter.tre = 0;
 		}
 		else{
