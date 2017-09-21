@@ -190,7 +190,7 @@ bot.addListener("message", function(from, to, text, message) {
 			bot.say(config.channels[0], randomFromArray(rebuke));
 			counter.tre = 0;
 		}
-		else if(message.nick.toLowerCase() != "trefirefem" || message.nick.toLowerCase() != "weakbot2"){
+		else if(message.nick.toLowerCase() != "trefirefem" && message.nick.toLowerCase() != "weakbot2"){
 		    bot.say(config.channels[0], from+" HELLO PLS");
 		}
 		return;
