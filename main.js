@@ -5,6 +5,7 @@ var config = {
 	password: "weakness420"
 };
 
+var rebuke = ["bitch you thought", "no", "I'm tired of you"];
 var pongs = ["ya bitch", "ya dingus", "ya weakling", "ya ugly ass"];
 var greetings = ["Hi", "Hey", "Sup", "What's shaking", "Whaddup", "You actually look OK today", "Hello", "What dat mouf do", "what's up"];
 var affection = ["I <3 u bb", "never change", "did you do something with your hair? It looks nice", "you smell nice"];
@@ -100,7 +101,8 @@ bot.connect(function() {
 var lastPerson;
 var counter = {
 	robo:0,
-	lari:0
+	lari:0,
+	tre:0
 };
 
 // console.log(bot);
@@ -130,19 +132,29 @@ bot.addListener("message", function(from, to, text, message) {
 	if(splitup[0].toLowerCase() == "..ping"){
 		bot.say(config.channels[0], message.nick+" pong, "+randomFromArray(pongs));
 		lastPerson = message.nick;
+		return;
 	}
 
 	if(splitup[0].toLowerCase() == "..sing"){
 		bot.say(config.channels[0], "🎵"+randomFromArray(songs)+"🎵");
+		return;
 	}
 	if(splitup[0].toLowerCase() == "..insult"){
 		if(splitup[1]){
 			bot.say(config.channels[0], splitup[1]+", "+randomFromArray(insults));
 		}
 		else bot.say(config.channels[0], from+", "+randomFromArray(insults));
+		return;
 	}
 	if(splitup[0].toLowerCase() == "..help"){
 		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name]");
+		return;
+	}
+	if(splitup[0].toLowerCase() == "..dab"){
+		if(splitup[1]){
+			bot.action(config.channels[0], "dabs on "+splitup[1]+" "+randomFromArray(dabEmojis));
+		}
+		else bot.action(config.channels[0], "dabs on "+from +" "+randomFromArray(dabEmojis));
 	}
 
 	for (var i = 0; i < greetings.length; i++) {
@@ -151,33 +163,41 @@ bot.addListener("message", function(from, to, text, message) {
 			lastPerson = from;
 		}
 	};
-
-	if(message.args[1].toLowerCase().indexOf("cuck") > -1){
-		bot.say(config.channels[0], from+" fuckin cuck");
-	}
-	if(message.args[1].toLowerCase().indexOf("hello pls") > -1){
-		// for (var i = 0; i < 9; i++) {
-			bot.say(config.channels[0], from+" HELLO PLS");
-		// };
-	}
+	
 	if(message.args[1].toLowerCase().indexOf("doot doot") > -1){
 		if(message.nick.toLowerCase().indexOf("lari") > -1) bot.say(config.channels[0], from+" no u");
 		else bot.say(config.channels[0], from+" thank mr skeletal");
-	}
-	if((message.args[1].toLowerCase().indexOf("fuck u weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck you weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck u, weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck you, weakerbot") > -1)){
-		bot.say(config.channels[0], ":(");
-	}
-	if(splitup[0].toLowerCase() == "..dab"){
-		if(splitup[1]){
-			bot.action(config.channels[0], "dabs on "+splitup[1]+" "+randomFromArray(dabEmojis));
-		}
-		else bot.action(config.channels[0], "dabs on "+from +" "+randomFromArray(dabEmojis));
-	}
-	if(message.args[1].toLowerCase().indexOf("succ") > -1){
-		bot.say(config.channels[0], "S U C C");
+		return;
 	}
 	if(splitup[0].toLowerCase().indexOf("m'") > -1 || message.args[1].toLowerCase().indexOf(" m'") > -1){
 		bot.action(config.channels[0], "tips fedora");
+		return;
+	}
+	if((message.args[1].toLowerCase().indexOf("fuck u weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck you weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck u, weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("fuck you, weakerbot") > -1)){
+		bot.say(config.channels[0], ":(");
+		return;
+	}
+	if(message.args[1].toLowerCase().indexOf("cuck") > -1){
+		bot.say(config.channels[0], from+" fuckin cuck");
+		return;
+	}
+	if(message.args[1].toLowerCase().indexOf("hello pls") > -1){
+		// if Kyle has HELLO PLS'd 4 times, tell him to fuck off already
+		if (message.nick.toLowerCase() == "trefirefem"){
+			counter.tre++;
+		}
+		if (counter.tre == 3){
+			bot.say(config.channels[0], randomFromArray(rebuke));
+			counter.tre = 0;
+		}
+		else if(message.nick.toLowerCase() != "trefirefem"){
+		    bot.say(config.channels[0], from+" HELLO PLS");
+		}
+		return;
+	}
+	if(message.args[1].toLowerCase().indexOf("succ") > -1){
+		bot.say(config.channels[0], "S U C C");
+		return;
 	}
 });
 
