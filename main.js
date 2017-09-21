@@ -5,6 +5,7 @@ var config = {
 	password: "weakness420"
 };
 
+var rebuke = ["bitch you thought", "no", "I'm tired of you"];
 var pongs = ["ya bitch", "ya dingus", "ya weakling", "ya ugly ass"];
 var greetings = ["Hi", "Hey", "Sup", "What's shaking", "Whaddup", "You actually look OK today", "Hello", "What dat mouf do", "what's up"];
 var affection = ["I <3 u bb", "never change", "did you do something with your hair? It looks nice", "you smell nice"];
@@ -183,13 +184,13 @@ bot.addListener("message", function(from, to, text, message) {
 	if(message.args[1].toLowerCase().indexOf("hello pls") > -1){
 		// if Kyle has HELLO PLS'd 4 times, tell him to fuck off already
 		if (message.nick.toLowerCase() == "trefirefem"){
-			counter.tre += 1;
+			counter.tre++;
 		}
-		if (counter.tre == 4){
-			bot.say(config.channels[0], "jesus fuck off already "+from);
+		if (counter.tre == 3){
+			bot.say(config.channels[0], randomFromArray(rebuke));
 			counter.tre = 0;
 		}
-		else{
+		else if(message.nick.toLowerCase() != "trefirefem"){
 		    bot.say(config.channels[0], from+" HELLO PLS");
 		}
 		return;
