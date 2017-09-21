@@ -105,11 +105,7 @@ var counter = {
 
 // console.log(bot);
 
-//help
-
 //nomski
-
-//m'pots
 
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
@@ -179,6 +175,9 @@ bot.addListener("message", function(from, to, text, message) {
 	}
 	if(message.args[1].toLowerCase().indexOf("succ") > -1){
 		bot.say(config.channels[0], "S U C C");
+	}
+	if(splitup[0].toLowerCase().indexOf("m'") > -1 || message.args[1].toLowerCase().indexOf(" m'") > -1){
+		bot.action(config.channels[0], "tips fedora");
 	}
 });
 
