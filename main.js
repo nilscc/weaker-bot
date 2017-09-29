@@ -202,7 +202,6 @@ bot.addListener("message", function(from, to, text, message) {
 		return;
 	}
 	if(tells[from.toLowerCase()] != undefined && tells[from.toLowerCase()].length){
-		console.log("from", from);
 		var remaining = tells[from].length-1;
 		if(remaining) remaining = "("+remaining+" remaining)";
 		else remaining = "";
