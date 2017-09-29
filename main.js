@@ -149,7 +149,7 @@ bot.addListener("message", function(from, to, text, message) {
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..help"){
-		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name]");
+		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message");
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..dab"){
@@ -210,6 +210,9 @@ bot.addListener("message", function(from, to, text, message) {
 		tells[from].pop();
 	}
 	if(splitup[0].toLowerCase() == "..tell"){
+		if(splitup[1] == undefined || splitup[2] == undefined){
+			bot.say(config.channels[0], tell.from+", not enough arguments. Eg ..tell trefirefem Do you bench 2pl8 yet?`");
+		}
 		if(splitup[1].toLowerCase().indexOf("bot") > -1){
 			bot.say(config.channels[0], randomFromArray(rebuke));
 			return;
