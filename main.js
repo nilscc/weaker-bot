@@ -227,7 +227,7 @@ bot.addListener("message", function(from, to, text, message) {
 			bot.say(config.channels[0], tell.from+", OK I'll try, but don't count on it. This is beta af");
 		}
 	}
-	if(tells[from].length){
+	if(tells[from.toLowerCase()].length){
 		var remaining = tells[from].length-1;
 		if(remaining) remaining = "("+remaining+" remaining)";
 		else remaining = "";
