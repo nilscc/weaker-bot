@@ -1,5 +1,5 @@
 var config = {
-	channels: ["##weakpots"],
+	channels: ["###weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
@@ -70,6 +70,8 @@ var benchMoar = [
 	"do some upper body work today, for me",
 	"get some bench work in bud",
 	"BANCHBANCHBANCH"];
+
+var tells = {};
 
 var irc = require("irc");
 
@@ -199,6 +201,40 @@ bot.addListener("message", function(from, to, text, message) {
 		bot.say(config.channels[0], "S U C C");
 		return;
 	}
+	if(splitup[0].toLowerCase() == "..tell"){
+		if(splitup[1].toLowerCase().indexOf("bot") > -1){
+			bot.say(config.channels[0], randomFromArray(rebuke));
+			return;
+		}
+		else{
+			var to = splitup[1].toLowerCase(); //sanitize this? idk
+			var msg = splitup.slice(2); //sanitize this too?
+			//accept and escape special chars
+			msg.join(" ");
+			var tell = {
+				"from":from,
+				"to":to,
+				"time":Date.now()/1000.0,
+				"msg":msg
+			};
+			//store it
+			if(tells[to]){
+				tells[to].push(tell);
+			}
+			else{
+				tells[to] = [tell];
+			}
+			bot.say(config.channels[0], tell.from+", OK I'll try, but don't count on it. This is beta af");
+		}
+	}
+	if(tells[from].length){
+		var remaining = tells[from].length-1;
+		if(remaining) remaining = "("+remaining+" remaining)";
+		else remaining = "";
+		bot.say(config.channels[0], tells[from][0].to+", message from "+tells[from][0].from+" "+localTime(tells[from][0].to, tells[from][0].time)+" "+remaining+": "+tells[from][0].msg);
+		tells[from].pop();
+	}
+
 });
 
 bot.addListener('error', function(message) {
@@ -207,4 +243,14 @@ bot.addListener('error', function(message) {
 
 function randomFromArray(array){
 	return array[Math.floor(Math.random() * array.length)];
+}
+
+function unreadMessages(from){
+	//
+	return false;
+}
+function localTime(who, when){
+	//lookup who's local time zone
+	var date = new Date(when*1000);
+	return date.toString();
 }
