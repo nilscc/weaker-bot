@@ -255,5 +255,6 @@ function unreadMessages(from){
 function localTime(who, when){
 	//lookup who's local time zone
 	var date = new Date(when*1000);
-	return date.toString();
+	var dateString = date.getHours() + ":" + date.getMinutes() + " " + date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+	return dateString;
 }
