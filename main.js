@@ -166,7 +166,7 @@ bot.addListener("message", function(from, to, text, message) {
 	if(splitup[0].toLowerCase() == "..sotd"){
 		if(splitup[1] == undefined){
 			if((sotd.time+(60.0*60.0*24.0)) < (Date.now()/1000.0)){
-				bot.say(config.channels[0], "link pls");
+				bot.say(config.channels[0], "time for a new song. link pls");
 			}
 			else{
 				bot.say(config.channels[0], sotd.who+"'s song of the day for "+timeDifference(sotd.time)+" longer is "+sotd.link);
