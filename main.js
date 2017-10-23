@@ -154,7 +154,7 @@ bot.addListener("message", function(from, to, text, message) {
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..help"){
-		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message");
+		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link]");
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..dab"){
@@ -163,7 +163,7 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		else bot.action(config.channels[0], "dabs on "+from +" "+randomFromArray(dabEmojis));
 	}
-	if(splitup[0].toLowerCase() == "..sotd"){
+	if(splitup[0].toLowerCase() == "..sotd" || splitup[0].toLowerCase() == "sotd"){
 		if(splitup[1] == undefined){
 			if((sotd.time+(60.0*60.0*24.0)) < (Date.now()/1000.0)){
 				bot.say(config.channels[0], "time for a new song. link pls");
