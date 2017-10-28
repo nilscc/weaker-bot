@@ -230,7 +230,7 @@ bot.addListener("message", function(from, to, text, message) {
 		return;
 	}
 	if(tells[from.toLowerCase()] != undefined && tells[from.toLowerCase()].length){
-		var remaining = tells[from].length-1;
+		var remaining = (tells[from.toLowerCase()].length)-1;
 		if(remaining) remaining = "("+remaining+" remaining)";
 		else remaining = "";
 		bot.say(config.channels[0], tells[from][0].to+", message from "+tells[from][0].from+" "+localTime(tells[from][0].to, tells[from][0].time)+" "+remaining+": "+tells[from][0].msg);
