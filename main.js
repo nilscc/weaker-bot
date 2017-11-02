@@ -116,6 +116,10 @@ var counter = {
 
 //nomski
 
+bot.addListener('error', function(message) {
+    console.log('error: ', message);
+});
+
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
@@ -266,10 +270,6 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 	}
 
-});
-
-bot.addListener('error', function(message) {
-    console.log('error: ', message);
 });
 
 function randomFromArray(array){
