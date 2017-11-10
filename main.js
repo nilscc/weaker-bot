@@ -79,6 +79,9 @@ var sotd = {
 };
 
 var irc = require("irc");
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://127.0.0.1:27017/weakdb";
+var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 // var bot = new irc.Client("chat.freenode.net", "weakerbot", {
 // 	channels: ["#weakpots"],
@@ -233,18 +236,12 @@ bot.addListener("message", function(from, to, text, message) {
 		bot.say(config.channels[0], "S U C C");
 		return;
 	}
-	if(tells[from.toLowerCase()] != undefined && tells[from.toLowerCase()].length){
-		var remaining = (tells[from.toLowerCase()].length)-1;
-		if(remaining) remaining = "("+remaining+" remaining)";
-		else remaining = "";
-		bot.say(config.channels[0], tells[from][0].to+", message from "+tells[from][0].from+" "+localTime(tells[from][0].to, tells[from][0].time)+" "+remaining+": "+tells[from][0].msg);
-		tells[from].pop();
-	}
+	unreadMessages(from);
 	if(splitup[0].toLowerCase() == "..tell"){
 		if(splitup[1] == undefined || splitup[2] == undefined){
 			bot.say(config.channels[0], tell.from+", not enough arguments. Eg ..tell trefirefem Do you bench 2pl8 yet?`");
 		}
-		if(splitup[1].toLowerCase().indexOf("bot") > -1){
+		if(splitup[1].toLowerCase().indexOf("bot") > -1 && splitup[1].toLowerCase().indexOf("Ferboten") < 0){
 			bot.say(config.channels[0], randomFromArray(rebuke));
 			return;
 		}
@@ -260,13 +257,23 @@ bot.addListener("message", function(from, to, text, message) {
 				"msg":msg
 			};
 			//store it
-			if(tells[to]){
-				tells[to].push(tell);
-			}
-			else{
-				tells[to] = [tell];
-			}
-			bot.say(config.channels[0], tell.from+", OK I'll try, but don't count on it. This is beta af");
+			// if(tells[to]){
+			// 	tells[to].push(tell);
+			// }
+			// else{
+			// 	tells[to] = [tell];
+			// }
+			// bot.say(config.channels[0], tell.from+", OK I'll try, but don't count on it. This is beta af");
+			MongoClient.connect(url, function(err, db) {
+			  if (err) throw err;
+			  db.collection("tells").insertOne(tell, function(err, res) {
+			    if (err) throw err;
+			    console.log("stored tell")
+			    console.log(tell);
+			    db.close();
+			    bot.say(config.channels[0], tell.from+", OK got it");
+			  });
+			});
 		}
 	}
 
@@ -277,13 +284,40 @@ function randomFromArray(array){
 }
 
 function unreadMessages(from){
-	//
-	return false;
+	from = from.toLowerCase();
+	console.log("check msg for "+from);
+	MongoClient.connect(url, function(err, db) {
+	  if (err) throw err;
+	  db.collection("tells").findOne({"to":from}, function(err, res) {
+	    if (err) throw err;
+	    db.close();
+	    if(res !== null && res !== undefined){
+	    	console.log("unread tell");
+	    	console.log(res);
+			bot.say(config.channels[0], from+" message from "+res.from+""+localTime(res.to, res.time)+": "+res.msg);
+			deleteTell(res);
+	    }
+	  });
+	});
+}
+function deleteTell(tell){
+	MongoClient.connect(url, function(err, db) {
+	  if (err) throw err;
+	  db.collection("tells").deleteOne({"_id":tell._id}, function(err, res) {
+	    if (err) throw err;
+	    console.log("deleted tell");
+	    console.log(tell);
+	    db.close();
+	  });
+	});
 }
 function localTime(who, when){
 	//lookup who's local time zone
 	var date = new Date(when*1000);
-	var dateString = "[" + date.getDate() + "/" + (date.getMonth()+1) + "/" + date.getFullYear() + " " + date.getHours() + ":" + date.getMinutes() + "]";
+	if((Date.now()/1000.0) - date > (60*60*12)){
+		var dateString = " [" + date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes() + "]";
+	}
+	else var dateString = '';
 	return dateString;
 }
 
