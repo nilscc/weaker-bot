@@ -206,7 +206,7 @@ bot.addListener("message", function(from, to, text, message) {
 		else bot.say(config.channels[0], from+" 🎺thank mr skeletal🎺");
 		return;
 	}
-	if(splitup[0].toLowerCase().indexOf("m'") > -1 || message.args[1].toLowerCase().indexOf(" m'") > -1){
+	if(splitup[0].toLowerCase().indexOf("m'") > -1 || message.args[1].toLowerCase().indexOf(" m'") > -1 || splitup[0].toLowerCase().indexOf("m’") > -1 || message.args[1].toLowerCase().indexOf(" m’") > -1){
 		bot.action(config.channels[0], "tips fedora");
 		return;
 	}
@@ -230,10 +230,6 @@ bot.addListener("message", function(from, to, text, message) {
 		else if(message.nick.toLowerCase() != "trefirefem" && message.nick.toLowerCase() != "weakbot2"){
 		    bot.say(config.channels[0], from+" HELLO PLS");
 		}
-		return;
-	}
-	if(message.args[1].toLowerCase().indexOf("succ") > -1){
-		bot.say(config.channels[0], "S U C C");
 		return;
 	}
 	unreadMessages(from);
