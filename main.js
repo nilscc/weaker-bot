@@ -263,12 +263,12 @@ bot.addListener("message", function(from, to, text, message) {
 				    	reps[res[i].lift] = res[i].reps;
 				    };
 				    db.close();
-				    if(res == null) bot.say(config.channels[0], from+" I shat the bed");
+				    if(!res.length) bot.say(config.channels[0], from+" someone shat the bed");
 				    var string = from+" squat: "+weight.squat+""+units.squat+" for "+reps.squat+" (e1rm "+epley(weight.squat, reps.squat)+""+units.squat+")";
 				    string += " bench: "+weight.bench+""+units.bench+" for "+reps.bench+" (e1rm "+epley(weight.bench, reps.bench)+""+units.bench+")";
 				    string += " deadlift: "+weight.deadlift+""+units.deadlift+" for "+reps.deadlift+" (e1rm "+epley(weight.deadlift, reps.deadlift)+""+units.deadlift+")";
 				    string += " ohp: "+weight.ohp+""+units.ohp+" for "+reps.ohp+" (e1rm "+epley(weight.ohp, reps.ohp)+""+units.ohp+")";
-				    if(res != null) bot.say(config.channels[0], string);
+				    if(res.length) bot.say(config.channels[0], string);
 				});
 			});
 		}
@@ -291,7 +291,7 @@ bot.addListener("message", function(from, to, text, message) {
 				    };
 				    db.close();
 				    if(!res.length) bot.say(config.channels[0], from+" couldn't find lifts for "+splitup[1]);
-				    var string = from+" squat: "+weight.squat+""+units.squat+" for "+reps.squat+" (e1rm "+epley(weight.squat, reps.squat)+""+units.squat+")";
+				    var string = from+" "+splitup[1]+" squat: "+weight.squat+""+units.squat+" for "+reps.squat+" (e1rm "+epley(weight.squat, reps.squat)+""+units.squat+")";
 				    string += " bench: "+weight.bench+""+units.bench+" for "+reps.bench+" (e1rm "+epley(weight.bench, reps.bench)+""+units.bench+")";
 				    string += " deadlift: "+weight.deadlift+""+units.deadlift+" for "+reps.deadlift+" (e1rm "+epley(weight.deadlift, reps.deadlift)+""+units.deadlift+")";
 				    string += " ohp: "+weight.ohp+""+units.ohp+" for "+reps.ohp+" (e1rm "+epley(weight.ohp, reps.ohp)+""+units.ohp+")";
@@ -310,7 +310,7 @@ bot.addListener("message", function(from, to, text, message) {
 				    console.log(res[0]);
 				    db.close();
 				    if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that... Is that lift added?");
-				    if(res != null) bot.say(config.channels[0], from+" "+res.weight+""+res.unit+" for "+res.reps+" (e1rm "+epley(res.weight, res.reps)+""+res.unit+")");
+				    if(res != null) bot.say(config.channels[0], from+" you "+splitup[1]+" "+res.weight+""+res.unit+" for "+res.reps+" (e1rm "+epley(res.weight, res.reps)+""+res.unit+")");
 				});
 			});
 		}
@@ -318,6 +318,16 @@ bot.addListener("message", function(from, to, text, message) {
 			//get the lifts for splitup[1]
 			//..lifts trefirefem bench
 			console.log("..lifts trefirefem bench");
+			MongoClient.connect(url, function(err, db) {
+				if (err) throw err;
+				db.collection("lifts").findOne({"who":splitup[1].toLowerCase(), "lift":splitup[2].toLowerCase()}, function(err, res) {
+					if (err) throw err;
+				    console.log(res[0]);
+				    db.close();
+				    if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that... Is that lift added?");
+				    if(res != null) bot.say(config.channels[0], from+" "++splitup[1]" "+splitup[2]+" "+res.weight+""+res.unit+" for "+res.reps+" (e1rm "+epley(res.weight, res.reps)+""+res.unit+")");
+				});
+			});
 		}
 		else if(splitup[2].toLowerCase() != "squat" && splitup[2].toLowerCase() != "bench" && splitup[2].toLowerCase() != "deadlift" && splitup[2].toLowerCase() != "ohp"){
 			//update the lift for the person who sent the message
