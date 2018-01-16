@@ -249,7 +249,7 @@ bot.addListener("message", function(from, to, text, message) {
 			//get all the lifts for who sent the message
 			//..lifts
 			console.log("..lifts");
-			var weight = {"squat":"guilt", "bench":"shame", "deadlift":"baggage", "ohp":"depression"};
+			var weight = {"squat":"guilt", "bench":"shame", "deadlift":"emotional baggage", "ohp":"depression"};
 			var units = {"squat":"", "bench":"", "deadlift":"", "ohp":""};
 			var reps = {"squat":0, "bench":0, "deadlift":0, "ohp":0};
 			MongoClient.connect(url, function(err, db) {
@@ -287,8 +287,8 @@ bot.addListener("message", function(from, to, text, message) {
 					if (err) throw err;
 				    console.log(res[0]);
 				    db.close();
-				    // if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that...?");
-				    // if(res != null) bot.say(config.channels[0], from+" gj bb! That's an e1rm of "+epley(splitup[2], splitup[4])+""+splitup[3]);
+				    if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that... Is that lift added?");
+				    if(res != null) bot.say(config.channels[0], from+" "+res.lift+""+res.unit+" for "+res.reps+" (e1rm: "+epley(res.weight, res.reps)+""+res.unit+")");
 				});
 			});
 		}
