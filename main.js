@@ -272,7 +272,7 @@ bot.addListener("message", function(from, to, text, message) {
 				});
 			});
 		}
-		else if(splitup[1].toLowerCase() != "squat" && splitup[1].toLowerCase() != "bench" && splitup[1].toLowerCase() != "deadlift" && splitup[1].toLowerCase() != "ohp"){
+		else if(splitup[2] && (splitup[1].toLowerCase() != "squat" && splitup[1].toLowerCase() != "bench" && splitup[1].toLowerCase() != "deadlift" && splitup[1].toLowerCase() != "ohp")){
 			//get the lift for splitup[1]
 			//..lifts trefirefem
 			console.log("..lifts trefirefem");
