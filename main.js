@@ -283,7 +283,7 @@ bot.addListener("message", function(from, to, text, message) {
 			console.log("..lifts bench");
 			MongoClient.connect(url, function(err, db) {
 				if (err) throw err;
-				db.collection("lifts").findOne({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}).toArray(function(err, res) {
+				db.collection("lifts").findOne({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}, function(err, res) {
 					if (err) throw err;
 				    console.log(res[0]);
 				    db.close();
@@ -309,7 +309,7 @@ bot.addListener("message", function(from, to, text, message) {
 				db.collection("lifts").update({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}, {"who":from, "lift":splitup[1].toLowerCase(), "weight":splitup[2], "unit":splitup[3], "reps":splitup[4]}, {upsert:true}, function(err, res) {
 					if (err) throw err;
 				    console.log("did find");
-				    console.log(res);2
+				    console.log(res);
 				    db.close();
 				    if(res == null) bot.say(config.channels[0], from+" oh, uh hmm didn't find that...?");
 				    if(res != null) bot.say(config.channels[0], from+" gj bb! That's an e1rm of "+epley(splitup[2], splitup[4])+""+splitup[3]);
