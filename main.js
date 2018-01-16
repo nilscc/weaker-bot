@@ -264,10 +264,10 @@ bot.addListener("message", function(from, to, text, message) {
 				    };
 				    db.close();
 				    if(res == null) bot.say(config.channels[0], from+" I shat the bed");
-				    var string = from+" squat: "+weight.squat+""+units.squat+" for "+reps.squat+" (e1rm: "+epley(weight.squat, reps.squat)+""+units.squat+")";
-				    string += " bench: "+weight.bench+""+units.bench+" for "+reps.bench+" (e1rm: "+epley(weight.bench, reps.bench)+""+units.bench+")";
-				    string += " deadlift: "+weight.deadlift+""+units.deadlift+" for "+reps.deadlift+" (e1rm: "+epley(weight.deadlift, reps.deadlift)+""+units.deadlift+")";
-				    string += " ohp: "+weight.ohp+""+units.ohp+" for "+reps.ohp+" (e1rm: "+epley(weight.ohp, reps.ohp)+""+units.ohp+")";
+				    var string = from+" squat: "+weight.squat+""+units.squat+" for "+reps.squat+" (e1rm "+epley(weight.squat, reps.squat)+""+units.squat+")";
+				    string += " bench: "+weight.bench+""+units.bench+" for "+reps.bench+" (e1rm "+epley(weight.bench, reps.bench)+""+units.bench+")";
+				    string += " deadlift: "+weight.deadlift+""+units.deadlift+" for "+reps.deadlift+" (e1rm "+epley(weight.deadlift, reps.deadlift)+""+units.deadlift+")";
+				    string += " ohp: "+weight.ohp+""+units.ohp+" for "+reps.ohp+" (e1rm "+epley(weight.ohp, reps.ohp)+""+units.ohp+")";
 				    if(res != null) bot.say(config.channels[0], string);
 				});
 			});
@@ -288,7 +288,7 @@ bot.addListener("message", function(from, to, text, message) {
 				    console.log(res[0]);
 				    db.close();
 				    if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that... Is that lift added?");
-				    if(res != null) bot.say(config.channels[0], from+" "+res.lift+""+res.unit+" for "+res.reps+" (e1rm: "+epley(res.weight, res.reps)+""+res.unit+")");
+				    if(res != null) bot.say(config.channels[0], from+" "+res.weight+""+res.unit+" for "+res.reps+" (e1rm "+epley(res.weight, res.reps)+""+res.unit+")");
 				});
 			});
 		}
