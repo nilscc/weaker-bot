@@ -238,7 +238,7 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		return;
 	}
-	if(message.args[0].toLowerCase().indexOf("..lifts") > -1){
+	if(splitup[0].toLowerCase().indexOf("..lifts") > -1){
 		//..lifts
 		//..lifts bench
 		//..lifts trefirefem
