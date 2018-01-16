@@ -256,7 +256,7 @@ bot.addListener("message", function(from, to, text, message) {
 				if (err) throw err;
 				db.collection("lifts").find({"who":from.toLowerCase()}).toArray(function(err, res) {
 					if (err) throw err;
-				    console.log(res);
+				    // console.log(res);
 				    for (var i = res.length - 1; i >= 0; i--) {
 				    	weight[res[i].lift] = res[i].weight;
 				    	units[res[i].lift] = res[i].unit;
@@ -283,7 +283,7 @@ bot.addListener("message", function(from, to, text, message) {
 				if (err) throw err;
 				db.collection("lifts").find({"who":splitup[1].toLowerCase()}).toArray(function(err, res) {
 					if (err) throw err;
-				    console.log(res);
+				    // console.log(res);
 				    for (var i = res.length - 1; i >= 0; i--) {
 				    	weight[res[i].lift] = res[i].weight;
 				    	units[res[i].lift] = res[i].unit;
@@ -307,7 +307,7 @@ bot.addListener("message", function(from, to, text, message) {
 				if (err) throw err;
 				db.collection("lifts").findOne({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}, function(err, res) {
 					if (err) throw err;
-				    console.log(res[0]);
+				    // console.log(res[0]);
 				    db.close();
 				    if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that... Is that lift added?");
 				    if(res != null) bot.say(config.channels[0], from+" you "+splitup[1]+" "+res.weight+""+res.unit+" for "+res.reps+" (e1rm "+epley(res.weight, res.reps)+""+res.unit+")");
@@ -322,7 +322,7 @@ bot.addListener("message", function(from, to, text, message) {
 				if (err) throw err;
 				db.collection("lifts").findOne({"who":splitup[1].toLowerCase(), "lift":splitup[2].toLowerCase()}, function(err, res) {
 					if (err) throw err;
-				    console.log(res[0]);
+				    // console.log(res[0]);
 				    db.close();
 				    if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that... Is that lift added?");
 				    if(res != null) bot.say(config.channels[0], from+" "+splitup[1]+" "+splitup[2]+" "+res.weight+""+res.unit+" for "+res.reps+" (e1rm "+epley(res.weight, res.reps)+""+res.unit+")");
@@ -340,8 +340,8 @@ bot.addListener("message", function(from, to, text, message) {
 				if (err) throw err;
 				db.collection("lifts").update({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}, {"who":from, "lift":splitup[1].toLowerCase(), "weight":splitup[2], "unit":splitup[3], "reps":splitup[4]}, {upsert:true}, function(err, res) {
 					if (err) throw err;
-				    console.log("did find");
-				    console.log(res);
+				    // console.log("did find");
+				    // console.log(res);
 				    db.close();
 				    if(res == null) bot.say(config.channels[0], from+" oh, uh hmm didn't find that...?");
 				    if(res != null) bot.say(config.channels[0], from+" gj bb! That's an e1rm of "+epley(splitup[2], splitup[4])+""+splitup[3]);
