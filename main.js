@@ -249,6 +249,24 @@ bot.addListener("message", function(from, to, text, message) {
 			//get all the lifts for who sent the message
 			//..lifts
 			console.log("..lifts");
+			var weight = {"squat":"guilt", "bench":"shame", "deadlift":"baggage", "ohp":"depression"};
+			var units = {"squat":0, "bench":0, "deadlift":0, "ohp":0};
+			var reps = {"squat":0, "bench":0, "deadlift":0, "ohp":0};
+			MongoClient.connect(url, function(err, db) {
+				if (err) throw err;
+				db.collection("lifts").find({"who":from.toLowerCase()}).toArray(function(err, res) {
+					if (err) throw err;
+				    console.log(res);
+				    for (var i = res.length - 1; i >= 0; i--) {
+				    	weight[res[i].lift] = res[i].weight;
+				    	units[res[i].lift] = res[i].unit;
+				    	reps[res[i].lift] = res[i].reps;
+				    };
+				    db.close();
+				    // if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that...?");
+				    if(res != null) bot.say(config.channels[0], from+"squat: "+squat.weight+""+squat.units+" (e1rm:"+epley(weight.squat, reps.squat)+""+units.squat+"), bench:100lbs(e1rm:100lbs), deadlift:100lbs(e1rm:100lbs), ohp:100lbs(e1rm:100lbs)");
+				});
+			});
 		}
 		else if(splitup[1].toLowerCase() != "squat" && splitup[1].toLowerCase() != "bench" && splitup[1].toLowerCase() != "deadlift" && splitup[1].toLowerCase() != "ohp"){
 			//get the lift for splitup[1]
@@ -259,12 +277,11 @@ bot.addListener("message", function(from, to, text, message) {
 			//get the lift for the person who sent the message
 			//..lifts bench
 			console.log("..lifts bench");
-			var temp = {"squat":0, "bench":0, "deadlift":0, "ohp":0};
 			MongoClient.connect(url, function(err, db) {
 				if (err) throw err;
-				db.collection("lifts").find({"who":from.toLowerCase()}).toArray(function(err, res) {
+				db.collection("lifts").findOne({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}).toArray(function(err, res) {
 					if (err) throw err;
-				    console.log(res);
+				    console.log(res[0]);
 				    db.close();
 				    // if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that...?");
 				    // if(res != null) bot.say(config.channels[0], from+" gj bb! That's an e1rm of "+epley(splitup[2], splitup[4])+""+splitup[3]);
@@ -392,5 +409,6 @@ function timeDifference(time){
 
 //https://github.com/KenanY/epley/blob/master/index.js
 function epley(w, r) {
-  return w * (r / 30 + 1);
+	if(isNaN(w)) break;
+	else return w * (r / 30 + 1);
 }
