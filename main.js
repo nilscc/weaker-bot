@@ -1,5 +1,5 @@
 var config = {
-	channels: ["##weakpots"],
+	channels: ["###weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
@@ -236,8 +236,20 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		return;
 	}
-	if(message.args[1].toLowerCase().indexOf("..lifts") > -1)){
-		//
+	if(message.args[1].toLowerCase().indexOf("..lifts") > -1){
+		if(splitup[1]) var who = splitup[1];
+		else var who = from;
+
+		MongoClient.connect(url, function(err, db) {
+			if (err) throw err;
+			db.collection("lifts").findOne({"who":from}, function(err, res) {
+				if (err) throw err;
+			    console.log("did find")
+			    console.log(res);
+			    db.close();
+			    // bot.say(config.channels[0], tell.from+", OK got it");
+			  });
+			});
 	}
 	unreadMessages(from);
 	if(splitup[0].toLowerCase() == "..tell"){
