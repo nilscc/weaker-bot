@@ -266,15 +266,13 @@ bot.addListener("message", function(from, to, text, message) {
 			//..lifts bench 100 kg 2
 			MongoClient.connect(url, function(err, db) {
 				if (err) throw err;
-				db.collection("lifts").update({"who":from, "lift":splitup[1], "weight":splitup[2], "unit":splitup[3], "reps":splitup[4]}, {}, {upsert:true}, function(err, res) {
+				db.collection("lifts").update({"who":from, "lift":splitup[1]}, {"who":from, "lift":splitup[1], "weight":splitup[2], "unit":splitup[3], "reps":splitup[4]}, {upsert:true}, function(err, res) {
 					if (err) throw err;
 				    console.log("did find")
 				    console.log(res);
 				    db.close();
-				    if(res == null){
-				    	//insert new person
-				    }
-				    bot.say(config.channels[0], tell.from+" nice! That's an e1rm of "+epley(splitup[2], splitup[4])+" "+splitup[3]);
+				    if(res == null) bot.say(config.channels[0], tell.from+" uh hmm didn't find that...?");
+				    if(res != null) bot.say(config.channels[0], tell.from+" nice! That's an e1rm of "+epley(splitup[2], splitup[4])+" "+splitup[3]);
 				});
 			});
 		}
