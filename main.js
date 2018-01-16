@@ -203,10 +203,10 @@ bot.addListener("message", function(from, to, text, message) {
 	
 	if(message.args[1].toLowerCase().indexOf("doot doot") > -1){
 		if(message.nick.toLowerCase().indexOf("lari") > -1) bot.say(config.channels[0], from+" no u");
-		else bot.say(config.channels[0], from+" 🎺thank mr skeletal🎺");
+		else bot.say(config.channels[0], from+" 🎺 thank mr skeletal 🎺");
 		return;
 	}
-	if(splitup[0].toLowerCase().indexOf("m'") > -1 || message.args[1].toLowerCase().indexOf(" m'") > -1 || splitup[0].toLowerCase().indexOf("m’") > -1 || message.args[1].toLowerCase().indexOf(" m’") > -1){
+	if((splitup[0].toLowerCase().indexOf("m'") > -1 || message.args[1].toLowerCase().indexOf(" m'") > -1 || splitup[0].toLowerCase().indexOf("m’") > -1 || message.args[0].toLowerCase().indexOf(" m’") > -1) && message.args[0].toLowerCase().indexOf("skam") < 0 && message.args[0].toLowerCase().indexOf("trefirefem") < 0){
 		bot.action(config.channels[0], "tips fedora");
 		return;
 	}
@@ -214,12 +214,16 @@ bot.addListener("message", function(from, to, text, message) {
 		bot.say(config.channels[0], ":(");
 		return;
 	}
+	if((message.args[1].toLowerCase().indexOf("thanks weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("thank you weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("thank u, weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("thank u weakerbot") > -1)){
+		bot.say(config.channels[0], ":D");
+		return;
+	}
 	if(message.args[1].toLowerCase().indexOf("cuck") > -1){
 		bot.say(config.channels[0], from+" fuckin cuck");
 		return;
 	}
 	if(message.args[1].toLowerCase().indexOf("hello pls") > -1){
-		// if Kyle has HELLO PLS'd 4 times, tell him to fuck off already
+		// if Kyle has HELLO PLS'd 3 times, tell him to fuck off already
 		if (message.nick.toLowerCase() == "trefirefem"){
 			counter.tre++;
 		}
@@ -232,12 +236,15 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		return;
 	}
+	if(message.args[1].toLowerCase().indexOf("..lifts") > -1)){
+		//
+	}
 	unreadMessages(from);
 	if(splitup[0].toLowerCase() == "..tell"){
 		if(splitup[1] == undefined || splitup[2] == undefined){
 			bot.say(config.channels[0], tell.from+", not enough arguments. Eg ..tell trefirefem Do you bench 2pl8 yet?`");
 		}
-		if(splitup[1].toLowerCase().indexOf("bot") > -1 && splitup[1].toLowerCase().indexOf("Ferboten") < 0){
+		if(splitup[1].toLowerCase().indexOf("bot") > -1 && splitup[1].toLowerCase().indexOf("ferboten") < 0){
 			bot.say(config.channels[0], randomFromArray(rebuke));
 			return;
 		}
@@ -281,7 +288,7 @@ function randomFromArray(array){
 
 function unreadMessages(from){
 	from = from.toLowerCase();
-	console.log("check msg for "+from);
+	// console.log("check msg for "+from);
 	MongoClient.connect(url, function(err, db) {
 	  if (err) throw err;
 	  db.collection("tells").findOne({"to":from}, function(err, res) {
@@ -323,4 +330,9 @@ function timeDifference(time){
 	msec -= hours * 1000 * 60 * 60;
 	var mins = Math.floor(msec / 1000 / 60);
 	return hours+"h"+mins+"m";
+}
+
+//https://github.com/KenanY/epley/blob/master/index.js
+function epley(w, r) {
+  return w * (r / 30 + 1);
 }
