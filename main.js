@@ -238,7 +238,7 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		return;
 	}
-	if(splitup[0].toLowerCase().indexOf("..lifts") > -1){
+	if(splitup[0].toLowerCase().indexOf("..lifts") > -1 || splitup[0].toLowerCase().indexOf("..lift") > -1){
 		//..lifts
 		//..lifts bench
 		//..lifts trefirefem
@@ -335,10 +335,11 @@ bot.addListener("message", function(from, to, text, message) {
 			console.log("..lifts bench 100 kg 2");
 			if(isNaN(splitup[2] || isNaN(splitup[4]))){
 				bot.say(config.channels[0], from+" ..lifts [squat/bench/deadlift/ohp] [weight] [units] [reps] (e.g. ..lifts bench 100 lbs 2)");
+				break;
 			}
 			MongoClient.connect(url, function(err, db) {
 				if (err) throw err;
-				db.collection("lifts").update({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}, {"who":from, "lift":splitup[1].toLowerCase(), "weight":splitup[2], "unit":splitup[3], "reps":splitup[4]}, {upsert:true}, function(err, res) {
+				db.collection("lifts").update({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}, {"who":from.toLowerCase(), "lift":splitup[1].toLowerCase(), "weight":splitup[2], "unit":splitup[3].toLowerCase(), "reps":splitup[4]}, {upsert:true}, function(err, res) {
 					if (err) throw err;
 				    // console.log("did find");
 				    // console.log(res);
