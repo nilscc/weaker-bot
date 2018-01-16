@@ -276,8 +276,8 @@ bot.addListener("message", function(from, to, text, message) {
 				    console.log("did find");
 				    console.log(res);2
 				    db.close();
-				    if(res == null) bot.say(config.channels[0], tell.from+" uh hmm didn't find that...?");
-				    if(res != null) bot.say(config.channels[0], tell.from+" nice! That's an e1rm of "+epley(splitup[2], splitup[4])+" "+splitup[3]);
+				    if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that...?");
+				    if(res != null) bot.say(config.channels[0], from+" nice! That's an e1rm of "+epley(splitup[2], splitup[4])+" "+splitup[3]);
 				});
 			});
 		}
