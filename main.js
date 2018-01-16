@@ -238,7 +238,7 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		return;
 	}
-	if(message.args[1].toLowerCase().indexOf("..lifts") > -1){
+	if(message.args[0].toLowerCase().indexOf("..lifts") > -1){
 		//..lifts
 		//..lifts bench
 		//..lifts trefirefem
@@ -248,27 +248,32 @@ bot.addListener("message", function(from, to, text, message) {
 		if(!splitup[1]){
 			//get all the lifts for who sent the message
 			//..lifts
+			console.log("..lifts");
 		}
 		else if(splitup[1].toLowerCase() != "squat" || splitup[1].toLowerCase() != "bench" || splitup[1].toLowerCase() != "deadlift" || splitup[1].toLowerCase() != "ohp"){
 			//get the lift for splitup[1]
 			//..lifts trefirefem
+			console.log("..lifts trefirefem");
 		}
 		else if(splitup[1].toLowerCase() == "squat" || splitup[1].toLowerCase() == "bench" || splitup[1].toLowerCase() == "deadlift" || splitup[1].toLowerCase() == "ohp"){
 			//get the lift for the person who sent the message
 			//..lifts bench
+			console.log("..lifts bench");
 		}
 		else if(splitup[2].toLowerCase() == "squat" || splitup[2].toLowerCase() == "bench" || splitup[2].toLowerCase() == "deadlift" || splitup[2].toLowerCase() == "ohp"){
 			//get the lifts for splitup[1]
 			//..lifts trefirefem bench
+			console.log("..lifts trefirefem bench");
 		}
 		else if(splitup[2].toLowerCase() != "squat" || splitup[2].toLowerCase() != "bench" || splitup[2].toLowerCase() != "deadlift" || splitup[2].toLowerCase() != "ohp"){
 			//update the lift for the person who sent the message
 			//..lifts bench 100 kg 2
+			console.log("..lifts bench 100 kg 2");
 			MongoClient.connect(url, function(err, db) {
 				if (err) throw err;
 				db.collection("lifts").update({"who":from, "lift":splitup[1]}, {"who":from, "lift":splitup[1], "weight":splitup[2], "unit":splitup[3], "reps":splitup[4]}, {upsert:true}, function(err, res) {
 					if (err) throw err;
-				    console.log("did find")
+				    console.log("did find");
 				    console.log(res);
 				    db.close();
 				    if(res == null) bot.say(config.channels[0], tell.from+" uh hmm didn't find that...?");
