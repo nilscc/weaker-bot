@@ -250,7 +250,7 @@ bot.addListener("message", function(from, to, text, message) {
 			//..lifts
 			console.log("..lifts");
 		}
-		else if(splitup[1].toLowerCase() != "squat" || splitup[1].toLowerCase() != "bench" || splitup[1].toLowerCase() != "deadlift" || splitup[1].toLowerCase() != "ohp"){
+		else if(splitup[1].toLowerCase() != "squat" && splitup[1].toLowerCase() != "bench" && splitup[1].toLowerCase() != "deadlift" && splitup[1].toLowerCase() != "ohp"){
 			//get the lift for splitup[1]
 			//..lifts trefirefem
 			console.log("..lifts trefirefem");
@@ -265,7 +265,7 @@ bot.addListener("message", function(from, to, text, message) {
 			//..lifts trefirefem bench
 			console.log("..lifts trefirefem bench");
 		}
-		else if(splitup[2].toLowerCase() != "squat" || splitup[2].toLowerCase() != "bench" || splitup[2].toLowerCase() != "deadlift" || splitup[2].toLowerCase() != "ohp"){
+		else if(splitup[2].toLowerCase() != "squat" && splitup[2].toLowerCase() != "bench" && splitup[2].toLowerCase() != "deadlift" && splitup[2].toLowerCase() != "ohp"){
 			//update the lift for the person who sent the message
 			//..lifts bench 100 kg 2
 			console.log("..lifts bench 100 kg 2");
@@ -274,7 +274,7 @@ bot.addListener("message", function(from, to, text, message) {
 				db.collection("lifts").update({"who":from, "lift":splitup[1]}, {"who":from, "lift":splitup[1], "weight":splitup[2], "unit":splitup[3], "reps":splitup[4]}, {upsert:true}, function(err, res) {
 					if (err) throw err;
 				    console.log("did find");
-				    console.log(res);
+				    console.log(res);2
 				    db.close();
 				    if(res == null) bot.say(config.channels[0], tell.from+" uh hmm didn't find that...?");
 				    if(res != null) bot.say(config.channels[0], tell.from+" nice! That's an e1rm of "+epley(splitup[2], splitup[4])+" "+splitup[3]);
