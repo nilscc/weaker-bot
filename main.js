@@ -335,7 +335,7 @@ bot.addListener("message", function(from, to, text, message) {
 			console.log("..lifts bench 100 kg 2");
 			if(isNaN(splitup[2] || isNaN(splitup[4]))){
 				bot.say(config.channels[0], from+" ..lifts [squat/bench/deadlift/ohp] [weight] [units] [reps] (e.g. ..lifts bench 100 lbs 2)");
-				break;
+				return;
 			}
 			MongoClient.connect(url, function(err, db) {
 				if (err) throw err;
