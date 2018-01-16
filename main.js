@@ -255,7 +255,7 @@ bot.addListener("message", function(from, to, text, message) {
 			//..lifts trefirefem
 			console.log("..lifts trefirefem");
 		}
-		else if(splitup[1].toLowerCase() == "squat" || splitup[1].toLowerCase() == "bench" || splitup[1].toLowerCase() == "deadlift" || splitup[1].toLowerCase() == "ohp"){
+		else if(!splitup[2] && (splitup[1].toLowerCase() == "squat" || splitup[1].toLowerCase() == "bench" || splitup[1].toLowerCase() == "deadlift" || splitup[1].toLowerCase() == "ohp")){
 			//get the lift for the person who sent the message
 			//..lifts bench
 			console.log("..lifts bench");
