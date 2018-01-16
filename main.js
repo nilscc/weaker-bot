@@ -276,6 +276,28 @@ bot.addListener("message", function(from, to, text, message) {
 			//get the lift for splitup[1]
 			//..lifts trefirefem
 			console.log("..lifts trefirefem");
+			var weight = {"squat":"guilt", "bench":"shame", "deadlift":"emotional baggage", "ohp":"depression"};
+			var units = {"squat":"", "bench":"", "deadlift":"", "ohp":""};
+			var reps = {"squat":0, "bench":0, "deadlift":0, "ohp":0};
+			MongoClient.connect(url, function(err, db) {
+				if (err) throw err;
+				db.collection("lifts").find({"who":splitup[1].toLowerCase()}).toArray(function(err, res) {
+					if (err) throw err;
+				    console.log(res);
+				    for (var i = res.length - 1; i >= 0; i--) {
+				    	weight[res[i].lift] = res[i].weight;
+				    	units[res[i].lift] = res[i].unit;
+				    	reps[res[i].lift] = res[i].reps;
+				    };
+				    db.close();
+				    if(res == null) bot.say(config.channels[0], from+" couldn't find lifts for "+splitup[1]);
+				    var string = from+" squat: "+weight.squat+""+units.squat+" for "+reps.squat+" (e1rm "+epley(weight.squat, reps.squat)+""+units.squat+")";
+				    string += " bench: "+weight.bench+""+units.bench+" for "+reps.bench+" (e1rm "+epley(weight.bench, reps.bench)+""+units.bench+")";
+				    string += " deadlift: "+weight.deadlift+""+units.deadlift+" for "+reps.deadlift+" (e1rm "+epley(weight.deadlift, reps.deadlift)+""+units.deadlift+")";
+				    string += " ohp: "+weight.ohp+""+units.ohp+" for "+reps.ohp+" (e1rm "+epley(weight.ohp, reps.ohp)+""+units.ohp+")";
+				    if(res != null) bot.say(config.channels[0], string);
+				});
+			});
 		}
 		else if(!splitup[2] && (splitup[1].toLowerCase() == "squat" || splitup[1].toLowerCase() == "bench" || splitup[1].toLowerCase() == "deadlift" || splitup[1].toLowerCase() == "ohp")){
 			//get the lift for the person who sent the message
