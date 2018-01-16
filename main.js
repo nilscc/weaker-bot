@@ -259,6 +259,17 @@ bot.addListener("message", function(from, to, text, message) {
 			//get the lift for the person who sent the message
 			//..lifts bench
 			console.log("..lifts bench");
+			var temp = {"squat":0, "bench":0, "deadlift":0, "ohp":0};
+			MongoClient.connect(url, function(err, db) {
+				if (err) throw err;
+				db.collection("lifts").find({"who":from.toLowerCase()}), function(err, res) {
+					if (err) throw err;
+				    console.log(res);
+				    db.close();
+				    // if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that...?");
+				    // if(res != null) bot.say(config.channels[0], from+" gj bb! That's an e1rm of "+epley(splitup[2], splitup[4])+""+splitup[3]);
+				});
+			});
 		}
 		else if(splitup[2].toLowerCase() == "squat" || splitup[2].toLowerCase() == "bench" || splitup[2].toLowerCase() == "deadlift" || splitup[2].toLowerCase() == "ohp"){
 			//get the lifts for splitup[1]
@@ -269,18 +280,22 @@ bot.addListener("message", function(from, to, text, message) {
 			//update the lift for the person who sent the message
 			//..lifts bench 100 kg 2
 			console.log("..lifts bench 100 kg 2");
+			if(isNaN(splitup[2] || isNaN(splitup[4]))){
+				bot.say(config.channels[0], from+" ..lifts [squat/bench/deadlift/ohp] [weight] [units] [reps] (e.g. ..lifts bench 100 lbs 2)");
+			}
 			MongoClient.connect(url, function(err, db) {
 				if (err) throw err;
-				db.collection("lifts").update({"who":from, "lift":splitup[1]}, {"who":from, "lift":splitup[1], "weight":splitup[2], "unit":splitup[3], "reps":splitup[4]}, {upsert:true}, function(err, res) {
+				db.collection("lifts").update({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}, {"who":from, "lift":splitup[1].toLowerCase(), "weight":splitup[2], "unit":splitup[3], "reps":splitup[4]}, {upsert:true}, function(err, res) {
 					if (err) throw err;
 				    console.log("did find");
 				    console.log(res);2
 				    db.close();
-				    if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that...?");
-				    if(res != null) bot.say(config.channels[0], from+" nice! That's an e1rm of "+epley(splitup[2], splitup[4])+" "+splitup[3]);
+				    if(res == null) bot.say(config.channels[0], from+" oh, uh hmm didn't find that...?");
+				    if(res != null) bot.say(config.channels[0], from+" gj bb! That's an e1rm of "+epley(splitup[2], splitup[4])+""+splitup[3]);
 				});
 			});
 		}
+		else bot.say(config.channels[0], from+" ..lifts [squat/bench/deadlift/ohp] [weight] [units] [reps] (e.g. ..lifts bench 100 lbs 2)");
 	}
 	unreadMessages(from);
 	if(splitup[0].toLowerCase() == "..tell"){
