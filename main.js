@@ -262,7 +262,7 @@ bot.addListener("message", function(from, to, text, message) {
 			var temp = {"squat":0, "bench":0, "deadlift":0, "ohp":0};
 			MongoClient.connect(url, function(err, db) {
 				if (err) throw err;
-				db.collection("lifts").find({"who":from.toLowerCase()}), function(err, res) {
+				db.collection("lifts").find({"who":from.toLowerCase()}).toArray(function(err, res) {
 					if (err) throw err;
 				    console.log(res);
 				    db.close();
