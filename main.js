@@ -290,12 +290,12 @@ bot.addListener("message", function(from, to, text, message) {
 				    	reps[res[i].lift] = res[i].reps;
 				    };
 				    db.close();
-				    if(res == null) bot.say(config.channels[0], from+" couldn't find lifts for "+splitup[1]);
+				    if(!res.length) bot.say(config.channels[0], from+" couldn't find lifts for "+splitup[1]);
 				    var string = from+" squat: "+weight.squat+""+units.squat+" for "+reps.squat+" (e1rm "+epley(weight.squat, reps.squat)+""+units.squat+")";
 				    string += " bench: "+weight.bench+""+units.bench+" for "+reps.bench+" (e1rm "+epley(weight.bench, reps.bench)+""+units.bench+")";
 				    string += " deadlift: "+weight.deadlift+""+units.deadlift+" for "+reps.deadlift+" (e1rm "+epley(weight.deadlift, reps.deadlift)+""+units.deadlift+")";
 				    string += " ohp: "+weight.ohp+""+units.ohp+" for "+reps.ohp+" (e1rm "+epley(weight.ohp, reps.ohp)+""+units.ohp+")";
-				    if(res != null) bot.say(config.channels[0], string);
+				    if(res.length) bot.say(config.channels[0], string);
 				});
 			});
 		}
