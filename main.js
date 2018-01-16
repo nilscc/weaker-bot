@@ -290,7 +290,7 @@ bot.addListener("message", function(from, to, text, message) {
 				    	reps[res[i].lift] = res[i].reps;
 				    };
 				    db.close();
-				    if(!res.length) bot.say(config.channels[0], from+" couldn't find lifts for "+splitup[1]);
+				    if(!res.length) bot.say(config.channels[0], from+" couldn't find lifts for "+splitup[1]". Is that supposed to be a person or a lift?");
 				    var string = from+" "+splitup[1]+" squat: "+weight.squat+""+units.squat+" for "+reps.squat+" (e1rm "+epley(weight.squat, reps.squat)+""+units.squat+")";
 				    string += " bench: "+weight.bench+""+units.bench+" for "+reps.bench+" (e1rm "+epley(weight.bench, reps.bench)+""+units.bench+")";
 				    string += " deadlift: "+weight.deadlift+""+units.deadlift+" for "+reps.deadlift+" (e1rm "+epley(weight.deadlift, reps.deadlift)+""+units.deadlift+")";
