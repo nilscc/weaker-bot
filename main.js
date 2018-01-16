@@ -1,5 +1,5 @@
 var config = {
-	channels: ["###weakpots"],
+	channels: ["##weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
@@ -349,7 +349,7 @@ bot.addListener("message", function(from, to, text, message) {
 				});
 			});
 		}
-		else bot.say(config.channels[0], from+" ..lifts [squat/bench/deadlift/ohp] [weight] [units] [reps] (e.g. ..lifts bench 100 lbs 2)");
+		else bot.say(config.channels[0], from+" ..lifts [who] [squat/bench/deadlift/ohp] ([weight] [units] [reps]) (e.g. ..lift trefirefem or ..lifts bench 100 lbs 2)");
 	}
 	unreadMessages(from);
 	if(splitup[0].toLowerCase() == "..tell"){
@@ -429,7 +429,7 @@ function deleteTell(tell){
 function localTime(who, when){
 	//lookup who's local time zone
 	var date = new Date(when*1000);
-	if((Date.now()/1000.0) - date > (60*60*12)){
+	if((Date.now()) - date > (1000*60*60*12)){
 		var dateString = " [" + date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getHours() + ":" + (date.getMinutes()<10?'0':'') + date.getMinutes() + "]";
 	}
 	else var dateString = '';
