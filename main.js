@@ -325,7 +325,7 @@ bot.addListener("message", function(from, to, text, message) {
 				    console.log(res[0]);
 				    db.close();
 				    if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that... Is that lift added?");
-				    if(res != null) bot.say(config.channels[0], from+" "++splitup[1]" "+splitup[2]+" "+res.weight+""+res.unit+" for "+res.reps+" (e1rm "+epley(res.weight, res.reps)+""+res.unit+")");
+				    if(res != null) bot.say(config.channels[0], from+" "+splitup[1]+" "+splitup[2]+" "+res.weight+""+res.unit+" for "+res.reps+" (e1rm "+epley(res.weight, res.reps)+""+res.unit+")");
 				});
 			});
 		}
