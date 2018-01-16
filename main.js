@@ -264,7 +264,7 @@ bot.addListener("message", function(from, to, text, message) {
 				    };
 				    db.close();
 				    // if(res == null) bot.say(config.channels[0], from+" uh hmm didn't find that...?");
-				    if(res != null) bot.say(config.channels[0], from+"squat: "+squat.weight+""+squat.units+" (e1rm:"+epley(weight.squat, reps.squat)+""+units.squat+"), bench:100lbs(e1rm:100lbs), deadlift:100lbs(e1rm:100lbs), ohp:100lbs(e1rm:100lbs)");
+				    if(res != null) bot.say(config.channels[0], from+"squat: "+weight.squat+""+units.squat+" (e1rm:"+epley(weight.squat, reps.squat)+""+units.squat+"), bench:100lbs(e1rm:100lbs), deadlift:100lbs(e1rm:100lbs), ohp:100lbs(e1rm:100lbs)");
 				});
 			});
 		}
