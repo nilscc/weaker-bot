@@ -361,7 +361,7 @@ bot.addListener("message", function(from, to, text, message) {
 			return;
 		}
 		else{
-			var to = splitup[1].toLowerCase(); //sanitize this? idk
+			var to = splitup[1]; //sanitize this? idk
 			var msg = splitup.slice(2); //sanitize this too?
 			//accept and escape special chars
 			msg = msg.join(" ");
@@ -399,6 +399,7 @@ function randomFromArray(array){
 }
 
 function unreadMessages(from){
+	var oldFrom = from;
 	from = from.toLowerCase();
 	// console.log("check msg for "+from);
 	MongoClient.connect(url, function(err, db) {
@@ -409,7 +410,7 @@ function unreadMessages(from){
 	    if(res !== null && res !== undefined){
 	    	console.log("unread tell");
 	    	console.log(res);
-			bot.say(config.channels[0], from+" message from "+res.from+""+localTime(res.to, res.time)+": "+res.msg);
+			bot.say(config.channels[0], oldFrom+" message from "+res.from+""+localTime(res.to, res.time)+": "+res.msg);
 			deleteTell(res);
 	    }
 	  });
