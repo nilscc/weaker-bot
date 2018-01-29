@@ -361,7 +361,7 @@ bot.addListener("message", function(from, to, text, message) {
 			return;
 		}
 		else{
-			var to = splitup[1]; //sanitize this? idk
+			var to = splitup[1].toLowerCase(); //sanitize this? idk
 			var msg = splitup.slice(2); //sanitize this too?
 			//accept and escape special chars
 			msg = msg.join(" ");
