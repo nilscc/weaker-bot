@@ -128,7 +128,7 @@ bot.addListener('error', function(message) {
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
-	if(who.indexOf("panny")>-1) bot.say(channel, who+" "+randomFromArray(curlsForDaGirls));
+	// if(who.indexOf("panny")>-1) bot.say(channel, who+" "+randomFromArray(curlsForDaGirls));
 	if(who.toLowerCase() == "trefirefem") bot.say(channel, who+" "+randomFromArray(benchMoar));
 });
 
@@ -410,7 +410,7 @@ function unreadMessages(from){
 	    if(res !== null && res !== undefined){
 	    	console.log("unread tell");
 	    	console.log(res);
-			bot.say(config.channels[0], oldFrom+" message from "+res.from+""+localTime(res.to, res.time)+": "+res.msg);
+			bot.say(config.channels[0], from+" message from "+res.from+""+localTime(res.to, res.time)+": "+res.msg);
 			deleteTell(res);
 	    }
 	  });
