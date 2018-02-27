@@ -182,10 +182,11 @@ bot.addListener("message", function(from, to, text, message) {
 			}
 		}
 		else if((sotd.time+(60.0*60.0*8.0)) < (Date.now()/1000.0)){
-			if(message.args[1].toLowerCase().indexOf("http") > -1) bot.say(config.channels[0], from+" "+randomFromArray(rebuke));
+			var msg = splitup.slice(1); //sanitize this too?
+			msg = msg.join(" ");
+			if(msg.toLowerCase().indexOf("http") < 0) bot.say(config.channels[0], from+" "+randomFromArray(rebuke));
 			else{
-				var msg = splitup.slice(1); //sanitize this too?
-				sotd.link = msg.join(" ");
+				sotd.link = msg;
 				sotd.time = Date.now()/1000.0;
 				sotd.who = from;
 				bot.say(config.channels[0], "OK you got the song of the day for 8 hours");
