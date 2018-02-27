@@ -178,7 +178,7 @@ bot.addListener("message", function(from, to, text, message) {
 				bot.say(config.channels[0], "time for a new song. link pls");
 			}
 			else{
-				bot.say(config.channels[0], sotd.who+"'s song of the day for "+timeDifference(sotd.time)+" longer is "+sotd.link);
+				bot.say(config.channels[0], sotd.who+" has song of the day for "+timeDifference(sotd.time)+" longer: "+sotd.link);
 			}
 		}
 		else if((sotd.time+(60.0*60.0*8.0)) < (Date.now()/1000.0)){
