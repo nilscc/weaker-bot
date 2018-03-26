@@ -466,7 +466,7 @@ function epley(w, r) {
 }
 
 function getWeather (where) {
-	var appid = 805cb9224e234f59790387b5fb26579d;
+	var appid = "805cb9224e234f59790387b5fb26579d";
 	var url = "http://api.openweathermap.org/data/2.5/weather?q="+where+"&appid="+appid;
 	request(url, function (err, response, body) {
 	  if(err){
