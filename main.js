@@ -467,17 +467,17 @@ function epley(w, r) {
 
 function getWeather (where) {
 	var appid = "805cb9224e234f59790387b5fb26579d";
-	var url = "http://api.openweathermap.org/data/2.5/weather?q="+where+"&appid="+appid;
+	var url = "http://api.openweathermap.org/data/2.5/weather?q="+where+"&units=metric&appid="+appid;
 	request(url, function (err, response, body) {
 	  if(err){
 	    console.log('error getting weather:', error);
-	    bot.action(config.channels[0], "uhhh "+error);
+	    bot.say(config.channels[0], "uhhh "+error);
 	  } else {
-	  	//var sample = {"message":"accurate","cod":"200","count":1,"list":[{"id":2643743,"name":"London","coord":{"lat":51.5085,"lon":-0.1258},"main":{"temp":7,"pressure":1012,"humidity":81,"temp_min":5,"temp_max":8},"dt":1485791400,"wind":{"speed":4.6,"deg":90},"sys":{"country":"GB"},"rain":null,"snow":null,"clouds":{"all":90},"weather":[{"id":701,"main":"Mist","description":"mist","icon":"50d"},{"id":300,"main":"Drizzle","description":"light intensity drizzle","icon":"09d"}]}]};
+	  	//{"coord":{"lon":-84.39,"lat":33.75},"weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}],"base":"stations","main":{"temp":280.85,"pressure":1029,"humidity":45,"temp_min":280.15,"temp_max":282.15},"visibility":16093,"wind":{"speed":5.7,"deg":80},"clouds":{"all":90},"dt":1522078500,"sys":{"type":1,"id":789,"message":0.0037,"country":"US","sunrise":1522063930,"sunset":1522108454},"id":4180439,"name":"Atlanta","cod":200}
 	    console.log('got the weather:', body);
 	    var sample = body;
-	    var weatherString = ""+sample.list[0].main.temp+"C and "+sample.list[0].weather[0].description+" in "+sample.list[0].name+" "+sample.list[0].sys.country;
-	    bot.action(config.channels[0], weatherString);
+	    var weatherString = ""+sample.main.temp+"C and "+sample.weather[0].description+" in "+sample.name+" "+sample.sys.country;
+	    bot.say(config.channels[0], weatherString);
 	  }
 	});
 }
