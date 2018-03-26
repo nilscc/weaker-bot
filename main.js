@@ -1,5 +1,5 @@
 var config = {
-	channels: ["##weakpots"],
+	channels: ["###weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
@@ -82,6 +82,7 @@ var sotd = {
 
 var irc = require("irc");
 var MongoClient = require('mongodb').MongoClient;
+var request = require('request');
 var url = "mongodb://127.0.0.1:27017/weakdb";
 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
@@ -393,6 +394,17 @@ bot.addListener("message", function(from, to, text, message) {
 			});
 		}
 	}
+	if(splitup[0].toLowerCase() == "..weather"){
+		//..weather london
+		//weather london, uk
+		//weather london uk
+		if(splitup[1]){
+			var query;
+			splitup[2] ? query = splitup[1]+","+splitup[2] : query = splitup[1];
+			getWeather(query);
+		}
+		else bot.action(config.channels[0], "But where tho");
+	}
 
 });
 
@@ -451,4 +463,21 @@ function timeDifference(time){
 function epley(w, r) {
 	if(!isNaN(w)) return Math.round(w * (r / 30 + 1));
 	else return "???";
+}
+
+function getWeather (where) {
+	var appid = 805cb9224e234f59790387b5fb26579d;
+	var url = "http://api.openweathermap.org/data/2.5/weather?q="+where+"&appid="+appid;
+	request(url, function (err, response, body) {
+	  if(err){
+	    console.log('error getting weather:', error);
+	    bot.action(config.channels[0], "uhhh "+error);
+	  } else {
+	  	//var sample = {"message":"accurate","cod":"200","count":1,"list":[{"id":2643743,"name":"London","coord":{"lat":51.5085,"lon":-0.1258},"main":{"temp":7,"pressure":1012,"humidity":81,"temp_min":5,"temp_max":8},"dt":1485791400,"wind":{"speed":4.6,"deg":90},"sys":{"country":"GB"},"rain":null,"snow":null,"clouds":{"all":90},"weather":[{"id":701,"main":"Mist","description":"mist","icon":"50d"},{"id":300,"main":"Drizzle","description":"light intensity drizzle","icon":"09d"}]}]};
+	    console.log('got the weather:', body);
+	    var sample = body;
+	    var weatherString = ""+sample.list[0].main.temp+"C and "+sample.list[0].weather[0].description+" in "+sample.list[0].name+" "+sample.list[0].sys.country;
+	    bot.action(config.channels[0], weatherString);
+	  }
+	});
 }
