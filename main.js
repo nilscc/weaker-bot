@@ -472,12 +472,18 @@ function getWeather (where) {
 	  if(err){
 	    console.log('error getting weather:', error);
 	    bot.say(config.channels[0], "uhhh "+error);
-	  } else {
+	  }
+	  else {
 	  	//{"coord":{"lon":-84.39,"lat":33.75},"weather":[{"id":804,"main":"Clouds","description":"overcast clouds","icon":"04d"}],"base":"stations","main":{"temp":280.85,"pressure":1029,"humidity":45,"temp_min":280.15,"temp_max":282.15},"visibility":16093,"wind":{"speed":5.7,"deg":80},"clouds":{"all":90},"dt":1522078500,"sys":{"type":1,"id":789,"message":0.0037,"country":"US","sunrise":1522063930,"sunset":1522108454},"id":4180439,"name":"Atlanta","cod":200}
 	    console.log('got the weather:', body);
 	    var sample = JSON.parse(body);
-	    var weatherString = ""+sample.main.temp+"C and "+sample.weather[0].description+" in "+sample.name+" "+sample.sys.country;
-	    bot.say(config.channels[0], weatherString);
+	    if(sample.cod == 200){
+	    	var weatherString = ""+sample.main.temp+"C and "+sample.weather[0].description+" in "+sample.name+", "+sample.sys.country;
+	    	bot.say(config.channels[0], weatherString);
+	    }
+	    else{
+	    	bot.say(config.channels[0], "idk");
+	    }
 	  }
 	});
 }
