@@ -307,7 +307,7 @@ bot.addListener("message", function(from, to, text, message) {
 				    var ohpstring = reps.ohp > 1 ? "x"+reps.ohp : "";
 				    ohpstring = weight.ohp + units.ohp + ohpstring;
 				    var string = from+" "+squatstring+"/"+benchstring+"/"+deadlift+"/"+ohpstring;
-				    var e1rmstring = " (e1RMs: "+epley(weight.squat, reps.squat)+units.squat"/"+epley(weight.bench, reps.bench)+units.bench+"/"+epley(weight.deadlift, reps.deadlift)+units.deadlift+"/"+epley(weight.ohp, reps.ohp)+units.ohp+")";
+				    var e1rmstring = " (e1RMs: "+epley(weight.squat, reps.squat)+units.squat+"/"+epley(weight.bench, reps.bench)+units.bench+"/"+epley(weight.deadlift, reps.deadlift)+units.deadlift+"/"+epley(weight.ohp, reps.ohp)+units.ohp+")";
 				    if(res.length) bot.say(config.channels[0], string);
 				});
 			});
