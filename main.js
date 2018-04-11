@@ -298,6 +298,16 @@ bot.addListener("message", function(from, to, text, message) {
 				    string += " bench: "+weight.bench+""+units.bench+" for "+reps.bench+" (e1rm "+epley(weight.bench, reps.bench)+""+units.bench+")";
 				    string += " deadlift: "+weight.deadlift+""+units.deadlift+" for "+reps.deadlift+" (e1rm "+epley(weight.deadlift, reps.deadlift)+""+units.deadlift+")";
 				    string += " ohp: "+weight.ohp+""+units.ohp+" for "+reps.ohp+" (e1rm "+epley(weight.ohp, reps.ohp)+""+units.ohp+")";
+				    var squatstring = reps.squat > 1 ? "x"+reps.squat : "";
+				    squatstring = weight.squat + units.squat + squatstring;
+				    var benchstring = reps.bench > 1 ? "x"+reps.bench : "";
+				    benchstring = weight.bench + units.bench + benchstring;
+				    var deadstring = reps.deadlift > 1 ? "x"+reps.deadlift : "";
+				    deadstring = weight.deadlift + units.deadlift + deadstring;
+				    var ohpstring = reps.ohp > 1 ? "x"+reps.ohp : "";
+				    ohpstring = weight.ohp + units.ohp + ohpstring;
+				    var string = from+" "+squatstring+"/"+benchstring+"/"+deadlift+"/"+ohpstring;
+				    var e1rmstring = " (e1RMs: "+epley(weight.squat, reps.squat)+units.squat"/"+epley(weight.bench, reps.bench)+units.bench+"/"+epley(weight.deadlift, reps.deadlift)+units.deadlift+"/"+epley(weight.ohp, reps.ohp)+units.ohp+")";
 				    if(res.length) bot.say(config.channels[0], string);
 				});
 			});
@@ -404,6 +414,9 @@ bot.addListener("message", function(from, to, text, message) {
 			getWeather(query);
 		}
 		else bot.say(config.channels[0], "But where tho");
+	}
+	if(message.args[1].toLowerCase().indexOf("for the greater good") > -1){
+		bot.say(config.channels[0], "FOR THE GREATER GOOD https://www.youtube.com/watch?v=N_q2wBzT6uU");
 	}
 
 });
