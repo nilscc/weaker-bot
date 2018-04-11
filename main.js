@@ -294,10 +294,10 @@ bot.addListener("message", function(from, to, text, message) {
 				    };
 				    db.close();
 				    if(!res.length) bot.say(config.channels[0], from+" couldn't find lifts for "+splitup[1]+". Is that supposed to be a person or a lift?");
-				    var string = from+" "+splitup[1]+" squat: "+weight.squat+""+units.squat+" for "+reps.squat+" (e1rm "+epley(weight.squat, reps.squat)+""+units.squat+")";
-				    string += " bench: "+weight.bench+""+units.bench+" for "+reps.bench+" (e1rm "+epley(weight.bench, reps.bench)+""+units.bench+")";
-				    string += " deadlift: "+weight.deadlift+""+units.deadlift+" for "+reps.deadlift+" (e1rm "+epley(weight.deadlift, reps.deadlift)+""+units.deadlift+")";
-				    string += " ohp: "+weight.ohp+""+units.ohp+" for "+reps.ohp+" (e1rm "+epley(weight.ohp, reps.ohp)+""+units.ohp+")";
+				    // var string = from+" "+splitup[1]+" squat: "+weight.squat+""+units.squat+" for "+reps.squat+" (e1rm "+epley(weight.squat, reps.squat)+""+units.squat+")";
+				    // string += " bench: "+weight.bench+""+units.bench+" for "+reps.bench+" (e1rm "+epley(weight.bench, reps.bench)+""+units.bench+")";
+				    // string += " deadlift: "+weight.deadlift+""+units.deadlift+" for "+reps.deadlift+" (e1rm "+epley(weight.deadlift, reps.deadlift)+""+units.deadlift+")";
+				    // string += " ohp: "+weight.ohp+""+units.ohp+" for "+reps.ohp+" (e1rm "+epley(weight.ohp, reps.ohp)+""+units.ohp+")";
 				    var squatstring = reps.squat > 1 ? "x"+reps.squat : "";
 				    squatstring = weight.squat + units.squat + squatstring;
 				    var benchstring = reps.bench > 1 ? "x"+reps.bench : "";
@@ -308,7 +308,7 @@ bot.addListener("message", function(from, to, text, message) {
 				    ohpstring = weight.ohp + units.ohp + ohpstring;
 				    var string = from+" "+squatstring+"/"+benchstring+"/"+deadlift+"/"+ohpstring;
 				    var e1rmstring = " (e1RMs: "+epley(weight.squat, reps.squat)+units.squat+"/"+epley(weight.bench, reps.bench)+units.bench+"/"+epley(weight.deadlift, reps.deadlift)+units.deadlift+"/"+epley(weight.ohp, reps.ohp)+units.ohp+")";
-				    if(res.length) bot.say(config.channels[0], string);
+				    if(res.length) bot.say(config.channels[0], string+""+e1rmstring);
 				});
 			});
 		}
