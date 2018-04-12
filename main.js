@@ -306,7 +306,7 @@ bot.addListener("message", function(from, to, text, message) {
 				    deadstring = weight.deadlift + units.deadlift + deadstring;
 				    var ohpstring = reps.ohp > 1 ? "x"+reps.ohp : "";
 				    ohpstring = weight.ohp + units.ohp + ohpstring;
-				    var string = from+" "+squatstring+"/"+benchstring+"/"+deadliftstring+"/"+ohpstring;
+				    var string = from+" "+squatstring+"/"+benchstring+"/"+deadstring+"/"+ohpstring;
 				    var e1rmstring = " (e1RMs: "+epley(weight.squat, reps.squat)+units.squat+"/"+epley(weight.bench, reps.bench)+units.bench+"/"+epley(weight.deadlift, reps.deadlift)+units.deadlift+"/"+epley(weight.ohp, reps.ohp)+units.ohp+")";
 				    if(res.length) bot.say(config.channels[0], string+""+e1rmstring);
 				});
