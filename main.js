@@ -414,9 +414,14 @@ bot.addListener("message", function(from, to, text, message) {
 		//..weather london
 		//weather london, uk
 		//weather london uk
-		if(splitup[1]){
+		//weather sandy springs
+		//..weather sandy springs, us
+		//weather 30308
+		var weatherString = message.args[1].toLowerCase();
+		weatherString = weatherString.replace("..weather ", "").split(",");
+		if(weatherString[0]){
 			var query;
-			splitup[2] ? query = splitup[1]+","+splitup[2] : query = splitup[1];
+			weatherString[1] ? query = weatherString[0]+","+weatherString[1] : query = weatherString[0];
 			getWeather(query);
 		}
 		else bot.say(config.channels[0], "But where tho");
