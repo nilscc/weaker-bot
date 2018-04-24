@@ -206,11 +206,6 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 	};
 	
-	if(message.args[1].toLowerCase().indexOf("doot doot") > -1){
-		if(message.nick.toLowerCase().indexOf("lari") > -1) bot.say(config.channels[0], from+" no u");
-		else bot.say(config.channels[0], from+" 🎺 thank mr skeletal 🎺");
-		return;
-	}
 	if((splitup[0].toLowerCase().indexOf("m'") > -1 || message.args[1].toLowerCase().indexOf(" m'") > -1 || splitup[0].toLowerCase().indexOf("m’") > -1 || message.args[0].toLowerCase().indexOf(" m’") > -1) && message.args[0].toLowerCase().indexOf("skam") < 0 && message.args[0].toLowerCase().indexOf("trefirefem") < 0){
 		bot.action(config.channels[0], "tips fedora");
 		return;
