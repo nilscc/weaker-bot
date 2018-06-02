@@ -368,7 +368,7 @@ bot.addListener("message", function(from, to, text, message) {
 	unreadMessages(from);
 	if(splitup[0].toLowerCase() == "..tell"){
 		if(!splitup[1] || !splitup[2]){
-			bot.say(config.channels[0], tell.from+", not enough arguments. Eg ..tell trefirefem Do you bench 2pl8 yet?`");
+			bot.say(config.channels[0], tell.from+", not enough arguments. Eg ..tell trefirefem Do you bench 2pl8 yet?");
 		}
 		if(splitup[1].toLowerCase().indexOf("bot") > -1 && splitup[1].toLowerCase().indexOf("ferboten") < 0){
 			bot.say(config.channels[0], randomFromArray(rebuke));
