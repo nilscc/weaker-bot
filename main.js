@@ -367,7 +367,7 @@ bot.addListener("message", function(from, to, text, message) {
 	}
 	unreadMessages(from);
 	if(splitup[0].toLowerCase() == "..tell"){
-		if(splitup[1].toLowerCase().indexOf("bot") > -1 && splitup[1].toLowerCase().indexOf("ferboten") < 0){
+		if(splitup[1] && splitup[1].toLowerCase().indexOf("bot") > -1 && splitup[1].toLowerCase().indexOf("ferboten") < 0){
 			bot.say(config.channels[0], randomFromArray(rebuke));
 			return;
 		}
