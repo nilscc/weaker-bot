@@ -497,7 +497,7 @@ function getWeather (where) {
 	    console.log('got the weather:', body);
 	    var sample = JSON.parse(body);
 	    if(sample.cod == 200){
-	    	var weatherString = ""+sample.main.temp+"C and "+sample.weather[0].description+" in "+sample.name+", "+sample.sys.country+"(at here: http://www.google.com/maps/place/"+sample.coord.lat+","+sample.coord.long+")";
+	    	var weatherString = ""+sample.main.temp+"C and "+sample.weather[0].description+" in "+sample.name+", "+sample.sys.country+" (at here: http://www.google.com/maps/place/"+sample.coord.lat+","+sample.coord.lon+")";
 	    	bot.say(config.channels[0], weatherString);
 	    }
 	    else{
