@@ -5,7 +5,7 @@ var config = {
 	password: "weakness420"
 };
 
-var rebuke = ["bitch you thought", "no", "I'm tired of you"];
+var rebuke = ["bitch you thought", "no", "I'm tired of you", "yeah no", "what if you didn't"];
 var pongs = ["ya bitch", "ya dingus", "ya weakling", "ya ugly ass"];
 var greetings = ["Hi", "Hey", "Sup", "What's shaking", "Whaddup", "You actually look OK today", "Hello", "What dat mouf do", "what's up"];
 var affection = ["I <3 u bb", "never change", "did you do something with your hair? It looks nice", "you smell nice"];
@@ -367,12 +367,12 @@ bot.addListener("message", function(from, to, text, message) {
 	}
 	unreadMessages(from);
 	if(splitup[0].toLowerCase() == "..tell"){
-		if(splitup[1] == undefined || splitup[2] == undefined){
-			bot.say(config.channels[0], tell.from+", not enough arguments. Eg ..tell trefirefem Do you bench 2pl8 yet?`");
-		}
-		if(splitup[1].toLowerCase().indexOf("bot") > -1 && splitup[1].toLowerCase().indexOf("ferboten") < 0){
+		if(splitup[1] && splitup[1].toLowerCase().indexOf("bot") > -1 && splitup[1].toLowerCase().indexOf("ferboten") < 0){
 			bot.say(config.channels[0], randomFromArray(rebuke));
 			return;
+		}
+		if(!splitup[1] || !splitup[2]){
+			bot.say(config.channels[0], message.nick+" not enough arguments. Eg ..tell trefirefem Do you bench 2pl8 yet?");
 		}
 		else{
 			var to = splitup[1].toLowerCase(); //sanitize this? idk
