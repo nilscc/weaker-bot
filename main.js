@@ -146,34 +146,34 @@ bot.addListener("message", function(from, to, text, message) {
 	}
 	// console.log("message: ", message);
 	var splitup = message.args[1].split(" ");
-	if(splitup[0].toLowerCase() == "..ping"){
+	if(splitup[0].toLowerCase() == "..ping" || splitup[0].toLowerCase() == "!ping" || splitup[0].toLowerCase() == ".ping"){
 		bot.say(config.channels[0], message.nick+" pong, "+randomFromArray(pongs));
 		lastPerson = message.nick;
 		return;
 	}
 
-	if(splitup[0].toLowerCase() == "..sing"){
+	if(splitup[0].toLowerCase() == "..sing" || splitup[0].toLowerCase() == "!sing" || splitup[0].toLowerCase() == ".sing"){
 		bot.say(config.channels[0], "🎵"+randomFromArray(songs)+"🎵");
 		return;
 	}
-	if(splitup[0].toLowerCase() == "..insult"){
+	if(splitup[0].toLowerCase() == "..insult" || splitup[0].toLowerCase() == "!insult" || splitup[0].toLowerCase() == ".insult"){
 		if(splitup[1]){
 			bot.say(config.channels[0], splitup[1]+", "+randomFromArray(insults));
 		}
 		else bot.say(config.channels[0], from+", "+randomFromArray(insults));
 		return;
 	}
-	if(splitup[0].toLowerCase() == "..help"){
+	if(splitup[0].toLowerCase() == "..help" || splitup[0].toLowerCase() == "!help" || splitup[0].toLowerCase() == ".help"){
 		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight reps units]]");
 		return;
 	}
-	if(splitup[0].toLowerCase() == "..dab"){
+	if(splitup[0].toLowerCase() == "..dab" || splitup[0].toLowerCase() == "!dab" || splitup[0].toLowerCase() == ".dab"){
 		if(splitup[1]){
 			bot.action(config.channels[0], "dabs on "+splitup[1]+" "+randomFromArray(dabEmojis));
 		}
 		else bot.action(config.channels[0], "dabs on "+from +" "+randomFromArray(dabEmojis));
 	}
-	if(splitup[0].toLowerCase() == "..sotd" || splitup[0].toLowerCase() == "sotd"){
+	if(splitup[0].toLowerCase() == "..sotd" || splitup[0].toLowerCase() == "sotd" || splitup[0].toLowerCase() == "!sotd" || splitup[0].toLowerCase() == ".sotd"){
 		if(splitup[1] == undefined){
 			if((sotd.time+(60.0*60.0*8.0)) < (Date.now()/1000.0)){
 				bot.say(config.channels[0], "time for a new song. link pls");
@@ -214,7 +214,7 @@ bot.addListener("message", function(from, to, text, message) {
 		bot.say(config.channels[0], ":(");
 		return;
 	}
-	if((message.args[1].toLowerCase().indexOf("thanks weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("thank you weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("thank u, weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("thank u weakerbot") > -1)){
+	if((message.args[1].toLowerCase().indexOf("thanks weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("thank you weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("thank u, weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("thank u weakerbot") > -1) || (message.args[1].toLowerCase().indexOf("ty weakerbot") > -1)){
 		bot.say(config.channels[0], ":D");
 		return;
 	}
@@ -236,7 +236,7 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		return;
 	}
-	if(splitup[0].toLowerCase().indexOf("..lifts") > -1 || splitup[0].toLowerCase().indexOf("..lift") > -1){
+	if(splitup[0].toLowerCase().indexOf("..lifts") > -1 || splitup[0].toLowerCase().indexOf("..lift") > -1 || splitup[0].toLowerCase().indexOf("!lifts") > -1 || splitup[0].toLowerCase().indexOf(".lifts") > -1){
 		//..lifts
 		//..lifts bench
 		//..lifts trefirefem
@@ -366,7 +366,7 @@ bot.addListener("message", function(from, to, text, message) {
 		else bot.say(config.channels[0], from+" ..lifts [who] [squat/bench/deadlift/ohp] ([weight] [units] [reps]) (e.g. ..lift trefirefem or ..lifts bench 100 lbs 2)");
 	}
 	unreadMessages(from);
-	if(splitup[0].toLowerCase() == "..tell"){
+	if(splitup[0].toLowerCase() == "..tell" || splitup[0].toLowerCase() == "!tell" || splitup[0].toLowerCase() == ".tell"){
 		if(splitup[1] && splitup[1].toLowerCase().indexOf("bot") > -1 && splitup[1].toLowerCase().indexOf("ferboten") < 0){
 			bot.say(config.channels[0], randomFromArray(rebuke));
 			return;
@@ -405,7 +405,7 @@ bot.addListener("message", function(from, to, text, message) {
 			});
 		}
 	}
-	if(splitup[0].toLowerCase() == "..weather"){
+	if(splitup[0].toLowerCase() == "..weather" || splitup[0].toLowerCase() == "!weather" || splitup[0].toLowerCase() == ".weather" || splitup[0].toLowerCase() == "..w" || splitup[0].toLowerCase() == "!w" || splitup[0].toLowerCase() == ".w"){
 		//..weather london
 		//weather london, uk
 		//weather london uk
@@ -413,7 +413,13 @@ bot.addListener("message", function(from, to, text, message) {
 		//..weather sandy springs, us
 		//weather 30308
 		var weatherString = message.args[1].toLowerCase();
-		weatherString = weatherString.replace("..weather ", "").split(",");
+		weatherString = weatherString.replace(".weather ", "");
+		weatherString = weatherString.replace("!weather ", "");
+		weatherString = weatherString.replace(".w ", "");
+		weatherString = weatherString.replace("..w ", "");
+		weatherString = weatherString.replace("!w ", "");
+		weatherString = weatherString.replace("..weather ", "").
+		weatherString = weatherString.split(",");
 		if(weatherString[0]){
 			var query;
 			weatherString[1] ? query = weatherString[0]+","+weatherString[1] : query = weatherString[0];
