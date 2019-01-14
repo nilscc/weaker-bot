@@ -1,6 +1,8 @@
 {
   "dependencies": {
-    "irc": "^0.5.2"
+    "irc": "^0.5.2",
+    "mongodb": "^2.2.32",
+    "request": "^2.83.0"
   },
   "name": "weaker-bot",
   "version": "1.0.0",

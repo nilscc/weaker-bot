@@ -101,7 +101,11 @@ var bot = new irc.Client("chat.freenode.net", "weakerbot", {
 	realName: 'rowbutt',
 	debug: true,
 	showErrors: true,
-	autoConnect: false
+	autoConnect: false,
+	username: "weakerbot",
+	nick: "weakerbot",
+	password: "weakness420",
+	sasl: true
 });
 bot.connect(function() {
     console.log("Connected!");
@@ -503,7 +507,7 @@ function getWeather (where) {
 	    console.log('got the weather:', body);
 	    var sample = JSON.parse(body);
 	    if(sample.cod == 200){
-	    	var weatherString = ""+sample.main.temp+"C and "+sample.weather[0].description+" in "+sample.name+", "+sample.sys.country;
+	    	var weatherString = ""+sample.main.temp+"C and "+sample.weather[0].description+" in "+sample.name+", "+sample.sys.country+" (at here: http://www.google.com/maps/place/"+sample.coord.lat+","+sample.coord.lon+")";
 	    	bot.say(config.channels[0], weatherString);
 	    }
 	    else{
