@@ -104,8 +104,7 @@ var bot = new irc.Client("chat.freenode.net", "weakerbot", {
 	autoConnect: false,
 	username: "weakerbot",
 	nick: "weakerbot",
-	password: "weakness420",
-	sasl: true
+	password: "weakness420"
 });
 bot.connect(function() {
     console.log("Connected!");
