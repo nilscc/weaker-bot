@@ -1,5 +1,5 @@
 var config = {
-	channels: ["###weakpots"],
+	channels: ["##weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
