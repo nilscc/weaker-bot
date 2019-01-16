@@ -1,5 +1,5 @@
 var config = {
-	channels: ["##weakpots"],
+	channels: ["###weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
@@ -416,13 +416,7 @@ bot.addListener("message", function(from, to, text, message) {
 		//..weather sandy springs, us
 		//weather 30308
 		var weatherString = message.args[1].toLowerCase();
-		weatherString = weatherString.replace(".weather ", "");
-		weatherString = weatherString.replace("!weather ", "");
-		weatherString = weatherString.replace(".w ", "");
-		weatherString = weatherString.replace("..w ", "");
-		weatherString = weatherString.replace("!w ", "");
-		weatherString = weatherString.replace("..weather ", "").
-		weatherString = weatherString.split(",");
+		weatherString = weatherString.replace(splitup[0].toLowerCase()+" ", "").split(",");
 		if(weatherString[0]){
 			var query;
 			weatherString[1] ? query = weatherString[0]+","+weatherString[1] : query = weatherString[0];
