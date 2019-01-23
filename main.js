@@ -483,7 +483,9 @@ function timeDifference(time){
 
 //https://github.com/KenanY/epley/blob/master/index.js
 function epley(w, r) {
-	if(!isNaN(w)) return Math.round(w * (r / 30 + 1));
+	var w = w*1.0;
+	var r = r*1.0;
+	if(!isNaN(w)) return Math.round(w * (r / 30.0 + 1.0));
 	else return "???";
 }
 
