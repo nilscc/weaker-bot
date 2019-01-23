@@ -485,6 +485,7 @@ function timeDifference(time){
 function epley(w, r) {
 	var w = w*1.0;
 	var r = r*1.0;
+	if(r < 2) return w;
 	if(!isNaN(w)) return Math.round(w * (r / 30.0 + 1.0));
 	else return "???";
 }
