@@ -534,7 +534,7 @@ function getCurrency (where) {
 	  else {
 	    console.log('currency converted:', body);
 	    var sample = JSON.parse(body);
-	    if(sample.cod == 200){
+	    if(Object.getOwnPropertyNames(sample).length === 0){
 	    	var currencyString = ""+sample.val + " FREEDOM DOLLARS";
 	    	bot.say(config.channels[0], currencyString);
 	    }
