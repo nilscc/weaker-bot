@@ -525,7 +525,7 @@ function getWeather (where) {
 }
 function getCurrency (where) {
 	var appid = "c7ff9f2a57486218da1f";
-	var url = "https://free.currencyconverterapi.com/api/v6/convert?q="+currency+"_USD&compact=ultra&apiKey="+appid;
+	var url = "https://free.currencyconverterapi.com/api/v6/convert?q="+where+"_USD&compact=ultra&apiKey="+appid;
 	request(url, function (err, response, body) {
 	  if(err){
 	    console.log('error converting currency:', error);
