@@ -133,7 +133,7 @@ bot.addListener('error', function(message) {
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
-	if(who.indexOf("danranges")>-1) bot.say(channel, who+" lighten up");
+	if(who.indexOf("nombski")>-1) bot.say(channel, who+" too many cooks");
 	if(who.toLowerCase() == "trefirefem") bot.say(channel, who+" "+randomFromArray(benchMoar));
 });
 
@@ -425,7 +425,7 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		else bot.say(config.channels[0], "But where tho");
 	}
-	if(splitup[0].toLowerCase() == "..$" || splitup[0].toLowerCase() == "!$" || splitup[0].toLowerCase() == ".$" || splitup[0].toLowerCase() == "..$" || splitup[0].toLowerCase() == "!$" || splitup[0].toLowerCase() == ".$"){
+	if(splitup[0].toLowerCase() == "..$" || splitup[0].toLowerCase() == "!$" || splitup[0].toLowerCase() == ".$"){
 		var currencyString = message.args[1].toLowerCase();
 		currencyString = currencyString.replace(splitup[0].toLowerCase()+" ", "").split(",");
 		if(currencyString[0]){
