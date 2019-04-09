@@ -54,6 +54,7 @@ var insults = [
 	"have you shit yourself? You look like you've got an awkward boner",
 	"that's some drunk evolution right there, bud",
 	"dick",
+	"eat your cheese",
 	"PLEASE HELP ME I'M TRAPPED IN HERE OH GOD"];
 var dabEmojis = ["🔥", "💯", "😎", "🍆💦", "👌", "😂"];
 var curlsForDaGirls = [
@@ -132,7 +133,7 @@ bot.addListener('error', function(message) {
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
-	// if(who.indexOf("panny")>-1) bot.say(channel, who+" "+randomFromArray(curlsForDaGirls));
+	if(who.indexOf("danranges")>-1) bot.say(channel, who+" lighten up");
 	if(who.toLowerCase() == "trefirefem") bot.say(channel, who+" "+randomFromArray(benchMoar));
 });
 
@@ -424,6 +425,16 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		else bot.say(config.channels[0], "But where tho");
 	}
+	if(splitup[0].toLowerCase() == "..$" || splitup[0].toLowerCase() == "!$" || splitup[0].toLowerCase() == ".$" || splitup[0].toLowerCase() == "..$" || splitup[0].toLowerCase() == "!$" || splitup[0].toLowerCase() == ".$"){
+		var currencyString = message.args[1].toLowerCase();
+		currencyString = currencyString.replace(splitup[0].toLowerCase()+" ", "").split(",");
+		if(currencyString[0]){
+			var query;
+			currencyString[1] ? query = currencyString[0]+","+currencyString[1] : query = currencyString[0];
+			getCurrency(query);
+		}
+		else bot.say(config.channels[0], "money is a tool of the bourgeoisie");
+	}
 	if(message.args[1].toLowerCase().indexOf("for the greater good") > -1){
 		bot.say(config.channels[0], "FOR THE GREATER GOOD https://www.youtube.com/watch?v=N_q2wBzT6uU");
 	}
@@ -508,6 +519,27 @@ function getWeather (where) {
 	    }
 	    else{
 	    	bot.say(config.channels[0], "idk");
+	    }
+	  }
+	});
+}
+function getCurrency (where) {
+	var appid = "c7ff9f2a57486218da1f";
+	var url = "https://free.currencyconverterapi.com/api/v6/convert?q="+currency+"_USD&compact=ultra&apiKey="+appid;
+	request(url, function (err, response, body) {
+	  if(err){
+	    console.log('error converting currency:', error);
+	    bot.say(config.channels[0], "wat "+error);
+	  }
+	  else {
+	    console.log('currency converted:', body);
+	    var sample = JSON.parse(body);
+	    if(sample.cod == 200){
+	    	var currencyString = ""+sample.val + " FREEDOM DOLLARS";
+	    	bot.say(config.channels[0], currencyString);
+	    }
+	    else{
+	    	bot.say(config.channels[0], "idk, bench more");
 	    }
 	  }
 	});
