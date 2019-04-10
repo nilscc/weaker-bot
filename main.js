@@ -431,9 +431,7 @@ bot.addListener("message", function(from, to, text, message) {
 		if(splitup[1] && splitup[2]){
 			var currencyString = splitup[1];
 			var currencySign = splitup[2].toUpperCase();
-			var amount = 1.0*currencyString*getCurrency(currencySign);
-			var theyDidtheMath = amount+" FREEDOM DOLLARS";
-			bot.say(config.channels[0], theyDidtheMath);
+			
 		}
 		else bot.say(config.channels[0], "money is a tool of the bourgeoisie");
 	}
@@ -537,7 +535,9 @@ function getCurrency (where) {
 	    var sample = JSON.parse(body);
 	    if(Object.getOwnPropertyNames(sample).length){
 		var currencyConv = sample[where+"_USD"];
-		return currencyConv;
+		var amount = 1.0*currencyString*getCurrency(currencySign);
+		var theyDidtheMath = amount+" FREEDOM DOLLARS";
+		bot.say(config.channels[0], theyDidtheMath);
 	    }
 	    else{
 	    	 bot.say(config.channels[0], "idk, bench more");
