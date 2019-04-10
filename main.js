@@ -558,7 +558,7 @@ function dirtyWords (wordToDefine) {
 	var url = "http://api.urbandictionary.com/v0/define?term="+wordToDefine;
 	request(url, function (err, response, body) {
 		 if(err){
-	    console.log('error converting currency:', error);
+	    console.log('error getting definition: ', error);
 	  }
 	else {
     	console.log('Urban Dictionary Definition:', body);
