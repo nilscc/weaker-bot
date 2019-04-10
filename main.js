@@ -429,7 +429,7 @@ bot.addListener("message", function(from, to, text, message) {
 		//..$ 11 nok
 		//.$ 123232423423423 CAD
 		if(splitup[1] && splitup[2]){
-			var currencyString = splitup[1];}
+			var currencyString = splitup[1];
 			var currencySign = splitup[2].toLowerCase();
 			var amount = currencyString[1]*getCurrency(currencySign);
 			var theyDidtheMath = amount+" FREEDOM DOLLARS";
