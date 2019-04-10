@@ -168,7 +168,7 @@ bot.addListener("message", function(from, to, text, message) {
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..help" || splitup[0].toLowerCase() == "!help" || splitup[0].toLowerCase() == ".help"){
-		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ [currency]");
+		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ [currency], ..ud [word]");
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..dab" || splitup[0].toLowerCase() == "!dab" || splitup[0].toLowerCase() == ".dab"){
@@ -435,6 +435,15 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		else bot.say(config.channels[0], "money is a tool of the bourgeoisie");
 	}
+	if(splitup[0].toLowerCase() == "..urban" || splitup[0].toLowerCase() == "!urban" || splitup[0].toLowerCase() == ".urban" || splitup[0].toLowerCase() == "..ud" || splitup[0].toLowerCase() == "!ud" || splitup[0].toLowerCase() == ".ud"){
+		//..ud felching
+		//.urban norway
+		if(splitup[1]){
+			var wordToDefine = splitup[1];
+			dirtyWords(wordToDefine);
+		}
+		else bot.say(config.channels[0], "kiss your mother with those lips?");
+	}
 	if(message.args[1].toLowerCase().indexOf("for the greater good") > -1){
 		bot.say(config.channels[0], "FOR THE GREATER GOOD https://www.youtube.com/watch?v=N_q2wBzT6uU");
 	}
@@ -541,6 +550,26 @@ function getCurrency (currencyString, currencySign) {
 	    }
 	    else{
 	    	 bot.say(config.channels[0], "idk, bench more");
+	    }
+	  }
+	});
+}
+function dirtyWords (wordToDefine) {
+	
+	var url = "http://api.urbandictionary.com/v0/define?term="+wordToDefine;
+	request(url, function (err, response, body) {
+	  if(err){
+	    console.log('error getting definition:', error);
+	  }
+	  else {
+	    console.log('Urban Dictionary Definition:', body);
+	    var sample = JSON.parse(body);
+	    if(Object.getOwnPropertyNames(sample).length){
+		var defined = sample.definition;
+		bot.say(config.channels[0], wordToDefine + ": "+defined);
+	    }
+	    else{
+	    	 bot.say(config.channels[0], "idk, get hip grandpa");
 	    }
 	  }
 	});
