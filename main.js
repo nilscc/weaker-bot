@@ -557,20 +557,11 @@ function getCurrency (currencyString, currencySign) {
 function dirtyWords (wordToDefine) {
 	
 	var url = "http://api.urbandictionary.com/v0/define?term="+wordToDefine;
-	request(url, function (err, response, body) {
-	  if(err){
-	    console.log('error getting definition:', error);
-	  }
-	  else {
-	    console.log('Urban Dictionary Definition:', body);
-	    var sample = JSON.parse(body);
-	    if(Object.getOwnPropertyNames(sample).length){
-		var defined = sample.definition;
-		bot.say(config.channels[0], wordToDefine + ": "+defined);
-	    }
-	    else{
-	    	 bot.say(config.channels[0], "idk, get hip grandpa");
-	    }
-	  }
-	});
+	request(url, function (body) {
+    console.log('Urban Dictionary Definition:', body);
+    var sample = JSON.parse(body);  
+	var definitionGot = sample.list[0].definition;
+  bot.say(config.channels[0], wordToDefine + ": "+definitionGot);
+     }
+ );
 }
