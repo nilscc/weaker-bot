@@ -428,9 +428,9 @@ bot.addListener("message", function(from, to, text, message) {
 	if(splitup[0].toLowerCase() == "..$" || splitup[0].toLowerCase() == "!$" || splitup[0].toLowerCase() == ".$"){
 		//..$ 11 nok
 		//.$ 123232423423423 CAD
-		var currencyString = splitup[1].toLowerCase();
-		var currencySign = splitup[2].toLowerCase();
-		if(currencyString & currencySign){
+		if(splitup[1] && splitup[2]){
+			var currencyString = splitup[1];}
+			var currencySign = splitup[2].toLowerCase();
 			var amount = currencyString[1]*getCurrency(currencySign);
 			var theyDidtheMath = amount+" FREEDOM DOLLARS";
 			bot.say(config.channels[0], theyDidtheMath);
