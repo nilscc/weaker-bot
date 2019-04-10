@@ -556,11 +556,18 @@ function getCurrency (currencyString, currencySign) {
 }
 function dirtyWords (wordToDefine) {
 	var url = "http://api.urbandictionary.com/v0/define?term="+wordToDefine;
-	request(url, function (body) {
+	request(url, function (err, response, body) {
+		 if(err){
+	    console.log('error converting currency:', error);
+	  }
+	else {
     	console.log('Urban Dictionary Definition:', body);
     	var sample = JSON.parse(body);  
 	var definitionGot = sample.list[0].definition;
  	bot.say(config.channels[0], wordToDefine + ": "+definitionGot);
+     }else{
+	     bot.say(config.channels[0], "idk, you figure it out nerd.");
      }
+	}
  );
 }
