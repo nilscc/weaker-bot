@@ -426,12 +426,19 @@ bot.addListener("message", function(from, to, text, message) {
 		else bot.say(config.channels[0], "But where tho");
 	}
 	if(splitup[0].toLowerCase() == "..$" || splitup[0].toLowerCase() == "!$" || splitup[0].toLowerCase() == ".$"){
+		//..$ 11 nok
+		//.$ 123232423423423 CAD
 		var currencyString = message.args[1].toLowerCase();
-		currencyString = currencyString.replace(splitup[0].toLowerCase()+" ", "").split(",");
+		var currencySign = message.args[2].toLowerCase();
 		if(currencyString[0]){
 			var query;
 			currencyString[1] ? query = currencyString[0]+","+currencyString[1] : query = currencyString[0];
 			getCurrency(query);
+			var something = getCurrency(query);
+			var amount = currencyString[1]*getCurrency(query);
+			var theyDidtheMath = amount+" "+where_usd+ " FREEDOM DOLLARS";
+			bot.say(config.channels[0], theyDidtheMath);
+			
 		}
 		else bot.say(config.channels[0], "money is a tool of the bourgeoisie");
 	}
@@ -529,17 +536,19 @@ function getCurrency (where) {
 	request(url, function (err, response, body) {
 	  if(err){
 	    console.log('error converting currency:', error);
-	    bot.say(config.channels[0], "wat "+error);
+	    // bot.say(config.channels[0], "wat "+error);
 	  }
 	  else {
 	    console.log('currency converted:', body);
 	    var sample = JSON.parse(body);
 	    if(Object.getOwnPropertyNames(sample).length === 0){
-	    	var currencyString = ""+sample.val + " FREEDOM DOLLARS";
-	    	bot.say(config.channels[0], currencyString);
+	    	var currencyString = ""+where_usd+ " FREEDOM DOLLARS";
+		var currencyConv = 1.1;
+		return currencyConv;
+	    	// bot.say(config.channels[0], currencyString);
 	    }
 	    else{
-	    	bot.say(config.channels[0], "idk, bench more");
+	    	// bot.say(config.channels[0], "idk, bench more");
 	    }
 	  }
 	});
