@@ -535,7 +535,7 @@ function getCurrency (where) {
 	  else {
 	    console.log('currency converted:', body);
 	    var sample = JSON.parse(body);
-	    if(Object.getOwnPropertyNames(sample).length === 0){
+	    if(Object.getOwnPropertyNames(sample).length){
 		var currencyConv = sample[where+"_USD"];
 		return currencyConv;
 	    }
