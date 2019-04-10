@@ -431,7 +431,7 @@ bot.addListener("message", function(from, to, text, message) {
 		if(splitup[1] && splitup[2]){
 			var currencyString = splitup[1];
 			var currencySign = splitup[2].toUpperCase();
-			
+			getCurrency(currencyString, currencySign);
 		}
 		else bot.say(config.channels[0], "money is a tool of the bourgeoisie");
 	}
@@ -523,7 +523,7 @@ function getWeather (where) {
 	  }
 	});
 }
-function getCurrency (where) {
+function getCurrency (currencyString, currencySign) {
 	var appid = "c7ff9f2a57486218da1f";
 	var url = "https://free.currencyconverterapi.com/api/v6/convert?q="+where+"_USD&compact=ultra&apiKey="+appid;
 	request(url, function (err, response, body) {
@@ -535,7 +535,7 @@ function getCurrency (where) {
 	    var sample = JSON.parse(body);
 	    if(Object.getOwnPropertyNames(sample).length){
 		var currencyConv = sample[where+"_USD"];
-		var amount = 1.0*currencyString*getCurrency(currencySign);
+		var amount = 1.0*currencyString*currencyConv;
 		var theyDidtheMath = amount+" FREEDOM DOLLARS";
 		bot.say(config.channels[0], theyDidtheMath);
 	    }
