@@ -430,8 +430,8 @@ bot.addListener("message", function(from, to, text, message) {
 		//.$ 123232423423423 CAD
 		if(splitup[1] && splitup[2]){
 			var currencyString = splitup[1];
-			var currencySign = splitup[2].toLowerCase();
-			var amount = currencyString*getCurrency(currencySign);
+			var currencySign = splitup[2].toUpperCase();
+			var amount = 1.0*currencyString*getCurrency(currencySign);
 			var theyDidtheMath = amount+" FREEDOM DOLLARS";
 			bot.say(config.channels[0], theyDidtheMath);
 		}
