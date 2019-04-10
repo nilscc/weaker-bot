@@ -525,7 +525,7 @@ function getWeather (where) {
 }
 function getCurrency (currencyString, currencySign) {
 	var appid = "c7ff9f2a57486218da1f";
-	var url = "https://free.currencyconverterapi.com/api/v6/convert?q="+where+"_USD&compact=ultra&apiKey="+appid;
+	var url = "https://free.currencyconverterapi.com/api/v6/convert?q="+currencySign+"_USD&compact=ultra&apiKey="+appid;
 	request(url, function (err, response, body) {
 	  if(err){
 	    console.log('error converting currency:', error);
@@ -534,7 +534,7 @@ function getCurrency (currencyString, currencySign) {
 	    console.log('currency converted:', body);
 	    var sample = JSON.parse(body);
 	    if(Object.getOwnPropertyNames(sample).length){
-		var currencyConv = sample[where+"_USD"];
+		var currencyConv = sample[currencySign+"_USD"];
 		var amount = 1.0*currencyString*currencyConv;
 		var theyDidtheMath = amount+" FREEDOM DOLLARS";
 		bot.say(config.channels[0], theyDidtheMath);
