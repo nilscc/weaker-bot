@@ -431,7 +431,7 @@ bot.addListener("message", function(from, to, text, message) {
 		if(splitup[1] && splitup[2]){
 			var currencyString = splitup[1];
 			var currencySign = splitup[2].toLowerCase();
-			var amount = currencyString[1]*getCurrency(currencySign);
+			var amount = currencyString*getCurrency(currencySign);
 			var theyDidtheMath = amount+" FREEDOM DOLLARS";
 			bot.say(config.channels[0], theyDidtheMath);
 		}
