@@ -54,6 +54,7 @@ var insults = [
 	"have you shit yourself? You look like you've got an awkward boner",
 	"that's some drunk evolution right there, bud",
 	"dick",
+	"eat your cheese",
 	"PLEASE HELP ME I'M TRAPPED IN HERE OH GOD"];
 var dabEmojis = ["🔥", "💯", "😎", "🍆💦", "👌", "😂"];
 var curlsForDaGirls = [
@@ -132,7 +133,7 @@ bot.addListener('error', function(message) {
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
-	// if(who.indexOf("panny")>-1) bot.say(channel, who+" "+randomFromArray(curlsForDaGirls));
+	if(who.indexOf("nombski")>-1) bot.say(channel, who+" too many cooks");
 	if(who.toLowerCase() == "trefirefem") bot.say(channel, who+" "+randomFromArray(benchMoar));
 });
 
@@ -167,7 +168,7 @@ bot.addListener("message", function(from, to, text, message) {
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..help" || splitup[0].toLowerCase() == "!help" || splitup[0].toLowerCase() == ".help"){
-		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]]");
+		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ [currency]");
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..dab" || splitup[0].toLowerCase() == "!dab" || splitup[0].toLowerCase() == ".dab"){
@@ -424,6 +425,16 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		else bot.say(config.channels[0], "But where tho");
 	}
+	if(splitup[0].toLowerCase() == "..$" || splitup[0].toLowerCase() == "!$" || splitup[0].toLowerCase() == ".$"){
+		//..$ 11 nok
+		//.$ 123232423423423 CAD
+		if(splitup[1] && splitup[2]){
+			var currencyString = splitup[1];
+			var currencySign = splitup[2].toUpperCase();
+			getCurrency(currencyString, currencySign);
+		}
+		else bot.say(config.channels[0], "money is a tool of the bourgeoisie");
+	}
 	if(message.args[1].toLowerCase().indexOf("for the greater good") > -1){
 		bot.say(config.channels[0], "FOR THE GREATER GOOD https://www.youtube.com/watch?v=N_q2wBzT6uU");
 	}
@@ -508,6 +519,28 @@ function getWeather (where) {
 	    }
 	    else{
 	    	bot.say(config.channels[0], "idk");
+	    }
+	  }
+	});
+}
+function getCurrency (currencyString, currencySign) {
+	var appid = "c7ff9f2a57486218da1f";
+	var url = "https://free.currencyconverterapi.com/api/v6/convert?q="+currencySign+"_USD&compact=ultra&apiKey="+appid;
+	request(url, function (err, response, body) {
+	  if(err){
+	    console.log('error converting currency:', error);
+	  }
+	  else {
+	    console.log('currency converted:', body);
+	    var sample = JSON.parse(body);
+	    if(Object.getOwnPropertyNames(sample).length){
+		var currencyConv = sample[currencySign+"_USD"];
+		var amount = 1.0*currencyString*currencyConv;
+		var theyDidtheMath = amount+" FREEDOM DOLLARS";
+		bot.say(config.channels[0], theyDidtheMath);
+	    }
+	    else{
+	    	 bot.say(config.channels[0], "idk, bench more");
 	    }
 	  }
 	});
