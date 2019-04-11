@@ -562,12 +562,14 @@ function dirtyWords (wordToDefine) {
 	  }
 	else {
     	console.log('Urban Dictionary Definition:', body);
-    	var sample = JSON.parse(body);  
-	var definitionGot = sample.list[0].definition;
- 	bot.say(config.channels[0], wordToDefine + ": "+definitionGot);
-     }else{
-	     bot.say(config.channels[0], "idk, you figure it out nerd.");
+    	var sample = JSON.parse(body);
+		if(Object.getOwnPropertyNames(sample).length){		
+		var definitionGot = sample.list[0].definition;
+		bot.say(config.channels[0], wordToDefine + ": "+definitionGot);
+		}
+		else{
+			bot.say(config.channels[0], "idk, you figure it out nerd.");
      }
 	}
- );
+	});
 }
