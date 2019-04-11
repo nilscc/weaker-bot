@@ -559,16 +559,20 @@ function dirtyWords (wordToDefine) {
 	request(url, function (err, response, body) {
 		 if(err){
 	    console.log('error getting definition: ', error);
-		bot.say(config.channels[0], "idk, you figure it out nerd.");
+	
 	  }
 	else {
-    	console.log('Urban Dictionary Definition:', body);
-    	var sample = JSON.parse(body);
-		if(sample != "{"list":[]}"{
-		var definitionGot = sample.list[0].definition;
-		bot.say(config.channels[0], wordToDefine + ": "+definitionGot);
-	}else
-		bot.say(config.channels[0], "idk, you figure it out nerd.");
+    		console.log('Urban Dictionary Definition:', body);
+    		var sample = JSON.parse(body);
+		var definition = sample.list[0]
+		if(definition != undefined){
+    		var definition = sample.list[0].definition;
+		var defined = wordToDefine + " " + definition;
+		bot.say(config.channels[0], defined);
 	}
+	else{
+    		bot.say(config.channels[0], "idk, you figure it out nerd.");
+}
+    
 	});
 }
