@@ -572,5 +572,6 @@ function dirtyWords (wordToDefine) {
 	else{
     	bot.say(config.channels[0], "idk, you figure it out nerd.");
 }
-	});
+	}
+});
 }
