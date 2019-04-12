@@ -1,5 +1,5 @@
 var config = {
-	channels: ["##weakpots"],
+	channels: ["###weakpots"],
 	server: "chat.freenode.net",
 	botName: "weakerbot",
 	password: "weakness420"
@@ -225,6 +225,21 @@ bot.addListener("message", function(from, to, text, message) {
 	if(message.args[1].toLowerCase().indexOf("cuck") > -1){
 		bot.say(config.channels[0], from+" fuckin cuck");
 		return;
+	}
+	if(message.args[1].toLowerCase().indexOf("cat") > -1){
+		var url = "https://catfact.ninja/fact?max_length=100";
+		request(url, function (err, response, body) {
+	  if(err){
+	    console.log('error getting cat fact:', error);
+	  }
+	  else {
+	    console.log('CAT FACT:', body);
+	    var sample = JSON.parse(body);
+		var cat = sample.fact;
+		bot.say(config.channels[0], from+" I LOVE CATS, DID U KNOW: " + cat);
+		return;
+	  }
+	});
 	}
 	if(message.args[1].toLowerCase().indexOf("hello pls") > -1){
 		// if Kyle has HELLO PLS'd 3 times, tell him to fuck off already
@@ -575,3 +590,4 @@ function dirtyWords (wordToDefine) {
 	}
 });
 }
+	
