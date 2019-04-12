@@ -442,7 +442,7 @@ bot.addListener("message", function(from, to, text, message) {
 			var wordToDefine = splitup[1];
 			dirtyWords(wordToDefine);
 		}
-		else bot.say(config.channels[0], "kiss your mother with those lips?");
+		else bot.say(config.channels[0], "give me a word to define, u luddite.");
 	}
 	if(message.args[1].toLowerCase().indexOf("for the greater good") > -1){
 		bot.say(config.channels[0], "FOR THE GREATER GOOD https://www.youtube.com/watch?v=N_q2wBzT6uU");
