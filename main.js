@@ -168,7 +168,7 @@ bot.addListener("message", function(from, to, text, message) {
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..help" || splitup[0].toLowerCase() == "!help" || splitup[0].toLowerCase() == ".help"){
-		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ [currency], ..ud [word]");
+		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ [currency], ..ud word");
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..dab" || splitup[0].toLowerCase() == "!dab" || splitup[0].toLowerCase() == ".dab"){
@@ -435,9 +435,9 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		else bot.say(config.channels[0], "money is a tool of the bourgeoisie");
 	}
-	if(splitup[0].toLowerCase() == "..urban" || splitup[0].toLowerCase() == "!urban" || splitup[0].toLowerCase() == ".urban" || splitup[0].toLowerCase() == "..ud" || splitup[0].toLowerCase() == "!ud" || splitup[0].toLowerCase() == ".ud"){
+	if(splitup[0].toLowerCase() == "..u" || splitup[0].toLowerCase() == "!u" || splitup[0].toLowerCase() == ".u" || splitup[0].toLowerCase() == "..ud" || splitup[0].toLowerCase() == "!ud" || splitup[0].toLowerCase() == ".ud"){
 		//..ud felching
-		//.urban norway
+		//.u norway
 		if(splitup[1]){
 			var wordToDefine = splitup[1];
 			dirtyWords(wordToDefine);
