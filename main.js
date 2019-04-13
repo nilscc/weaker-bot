@@ -168,7 +168,7 @@ bot.addListener("message", function(from, to, text, message) {
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..help" || splitup[0].toLowerCase() == "!help" || splitup[0].toLowerCase() == ".help"){
-		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ [currency]");
+		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ [currency], ..ud word");
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..dab" || splitup[0].toLowerCase() == "!dab" || splitup[0].toLowerCase() == ".dab"){
@@ -225,6 +225,21 @@ bot.addListener("message", function(from, to, text, message) {
 	if(message.args[1].toLowerCase().indexOf("cuck") > -1){
 		bot.say(config.channels[0], from+" fuckin cuck");
 		return;
+	}
+	if(message.args[1].toLowerCase().indexOf("cat") > -1){
+		var url = "https://catfact.ninja/fact?max_length=100";
+		request(url, function (err, response, body) {
+	  if(err){
+	    console.log('error getting cat fact:', error);
+	  }
+	  else {
+	    console.log('CAT FACT:', body);
+	    var sample = JSON.parse(body);
+		var cat = sample.fact;
+		bot.say(config.channels[0], from+" I LOVE CATS, DID U KNOW: " + cat);
+		return;
+	  }
+	});
 	}
 	if(message.args[1].toLowerCase().indexOf("hello pls") > -1){
 		// if Kyle has HELLO PLS'd 3 times, tell him to fuck off already
@@ -435,6 +450,15 @@ bot.addListener("message", function(from, to, text, message) {
 		}
 		else bot.say(config.channels[0], "money is a tool of the bourgeoisie");
 	}
+	if(splitup[0].toLowerCase() == "..u" || splitup[0].toLowerCase() == "!u" || splitup[0].toLowerCase() == ".u" || splitup[0].toLowerCase() == "..ud" || splitup[0].toLowerCase() == "!ud" || splitup[0].toLowerCase() == ".ud"){
+		//..ud felching
+		//.u norway
+		if(splitup[1]){
+			var wordToDefine = splitup[1];
+			dirtyWords(wordToDefine);
+		}
+		else bot.say(config.channels[0], "give me a word to define, u luddite.");
+	}
 	if(message.args[1].toLowerCase().indexOf("for the greater good") > -1){
 		bot.say(config.channels[0], "FOR THE GREATER GOOD https://www.youtube.com/watch?v=N_q2wBzT6uU");
 	}
@@ -545,3 +569,25 @@ function getCurrency (currencyString, currencySign) {
 	  }
 	});
 }
+function dirtyWords (wordToDefine) {
+	var url = "http://api.urbandictionary.com/v0/define?term="+wordToDefine;
+	request(url, function (err, response, body) {
+	 if(err){
+	    console.log('error getting definition: ', error);
+	  }
+	else {
+    	console.log('Urban Dictionary Definition:', body);
+    	var sample = JSON.parse(body);
+	var definition = sample.list[0]
+	if(definition != undefined){
+    		var definition = sample.list[0].definition;
+		var defined = wordToDefine + " " + definition;
+		bot.say(config.channels[0], defined);
+	}
+	else{
+    	bot.say(config.channels[0], "idk, you figure it out nerd.");
+}
+	}
+});
+}
+	
