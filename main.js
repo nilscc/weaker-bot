@@ -84,7 +84,7 @@ var sotd = {
 var irc = require("irc");
 var MongoClient = require('mongodb').MongoClient;
 var request = require('request');
-var url = "mongodb://127.0.0.1:27017/weakdb";
+var config.url = "mongodb://127.0.0.1:27017/weakdb";
 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 // var bot = new irc.Client("chat.freenode.net", "weakerbot", {
@@ -269,7 +269,7 @@ bot.addListener("message", function(from, to, text, message) {
 			var weight = {"squat":"guilt", "bench":"shame", "deadlift":"emotional baggage", "ohp":"depression"};
 			var units = {"squat":"", "bench":"", "deadlift":"", "ohp":""};
 			var reps = {"squat":0, "bench":0, "deadlift":0, "ohp":0};
-			MongoClient.connect(url, function(err, db) {
+			MongoClient.connect(config.url, function(err, db) {
 				if (err) throw err;
 				db.collection("lifts").find({"who":from.toLowerCase()}).toArray(function(err, res) {
 					if (err) throw err;
@@ -302,7 +302,7 @@ bot.addListener("message", function(from, to, text, message) {
 			var weight = {"squat":"guilt", "bench":"shame", "deadlift":"emotional baggage", "ohp":"depression"};
 			var units = {"squat":"", "bench":"", "deadlift":"", "ohp":""};
 			var reps = {"squat":0, "bench":0, "deadlift":0, "ohp":0};
-			MongoClient.connect(url, function(err, db) {
+			MongoClient.connect(config.url, function(err, db) {
 				if (err) throw err;
 				db.collection("lifts").find({"who":splitup[1].toLowerCase()}).toArray(function(err, res) {
 					if (err) throw err;
@@ -336,7 +336,7 @@ bot.addListener("message", function(from, to, text, message) {
 			//get the lift for the person who sent the message
 			//..lifts bench
 			console.log("..lifts bench");
-			MongoClient.connect(url, function(err, db) {
+			MongoClient.connect(config.url, function(err, db) {
 				if (err) throw err;
 				db.collection("lifts").findOne({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}, function(err, res) {
 					if (err) throw err;
@@ -351,7 +351,7 @@ bot.addListener("message", function(from, to, text, message) {
 			//get the lifts for splitup[1]
 			//..lifts trefirefem bench
 			console.log("..lifts trefirefem bench");
-			MongoClient.connect(url, function(err, db) {
+			MongoClient.connect(config.url, function(err, db) {
 				if (err) throw err;
 				db.collection("lifts").findOne({"who":splitup[1].toLowerCase(), "lift":splitup[2].toLowerCase()}, function(err, res) {
 					if (err) throw err;
@@ -370,7 +370,7 @@ bot.addListener("message", function(from, to, text, message) {
 				bot.say(config.channels[0], from+" ..lifts [squat/bench/deadlift/ohp] [weight] [units] [reps] (e.g. ..lifts bench 100 lbs 2)");
 				return;
 			}
-			MongoClient.connect(url, function(err, db) {
+			MongoClient.connect(config.url, function(err, db) {
 				if (err) throw err;
 				db.collection("lifts").update({"who":from.toLowerCase(), "lift":splitup[1].toLowerCase()}, {"who":from.toLowerCase(), "lift":splitup[1].toLowerCase(), "weight":splitup[2], "unit":splitup[3].toLowerCase(), "reps":splitup[4]}, {upsert:true}, function(err, res) {
 					if (err) throw err;
@@ -412,7 +412,7 @@ bot.addListener("message", function(from, to, text, message) {
 			// 	tells[to] = [tell];
 			// }
 			// bot.say(config.channels[0], tell.from+", OK I'll try, but don't count on it. This is beta af");
-			MongoClient.connect(url, function(err, db) {
+			MongoClient.connect(config.url, function(err, db) {
 			  if (err) throw err;
 			  db.collection("tells").insertOne(tell, function(err, res) {
 			    if (err) throw err;
@@ -473,7 +473,7 @@ function unreadMessages(from){
 	var oldFrom = from;
 	from = from.toLowerCase();
 	// console.log("check msg for "+from);
-	MongoClient.connect(url, function(err, db) {
+	MongoClient.connect(config.url, function(err, db) {
 	  if (err) throw err;
 	  db.collection("tells").findOne({"to":from}, function(err, res) {
 	    if (err) throw err;
@@ -488,7 +488,7 @@ function unreadMessages(from){
 	});
 }
 function deleteTell(tell){
-	MongoClient.connect(url, function(err, db) {
+	MongoClient.connect(config.url, function(err, db) {
 	  if (err) throw err;
 	  db.collection("tells").deleteOne({"_id":tell._id}, function(err, res) {
 	    if (err) throw err;
