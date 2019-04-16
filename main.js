@@ -84,7 +84,7 @@ var sotd = {
 var irc = require("irc");
 var MongoClient = require('mongodb').MongoClient;
 var request = require('request');
-var config.url = "mongodb://127.0.0.1:27017/weakdb";
+config.url = "mongodb://127.0.0.1:27017/weakdb";
 var monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
 // var bot = new irc.Client("chat.freenode.net", "weakerbot", {
