@@ -133,7 +133,7 @@ bot.addListener('error', function(message) {
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
-	if(who.indexOf("nombski")>-1) bot.say(channel, who+" too many cooks");
+	if(who.indexOf("nombski")>-1) bot.say(channel, "too many cooks");
 	if(who.toLowerCase() == "trefirefem") bot.say(channel, who+" "+randomFromArray(benchMoar));
 });
 
