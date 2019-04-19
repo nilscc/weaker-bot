@@ -168,7 +168,7 @@ bot.addListener("message", function(from, to, text, message) {
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..help" || splitup[0].toLowerCase() == "!help" || splitup[0].toLowerCase() == ".help"){
-		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ [currency], ..ud word");
+		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ currency, ..ud word");
 		return;
 	}
 	if(splitup[0].toLowerCase() == "..dab" || splitup[0].toLowerCase() == "!dab" || splitup[0].toLowerCase() == ".dab"){
@@ -561,11 +561,13 @@ function dirtyWords (wordToDefine) {
 	    console.log('error getting definition: ', error);
 	  }
 	else {
-    	console.log('Urban Dictionary Definition:', body);
+    	// console.log('Urban Dictionary Definition:', body);
     	var sample = JSON.parse(body);
 	var definition = sample.list[0]
 	if(definition != undefined){
-    		var definition = sample.list[0].definition;
+    	var definition = sample.list[0].definition;
+    	definition = definition.replace("[", "");
+    	definition = definition.replace("]", "");
 		var defined = wordToDefine + " " + definition;
 		bot.say(config.channels[0], defined);
 	}
