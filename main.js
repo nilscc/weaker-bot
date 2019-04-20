@@ -133,8 +133,9 @@ bot.addListener('error', function(message) {
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
-	if(who.indexOf("nombski")>-1) bot.say(channel, "too many cooks");
-	if(who.toLowerCase() == "trefirefem") bot.say(channel, who+" "+randomFromArray(benchMoar));
+	if(who.toLowerCase().indexOf("nombski")>-1) bot.say(channel, "too many cooks");
+	if(who.toLowerCase().toLowerCase() == "trefirefem") bot.say(channel, who+" "+randomFromArray(benchMoar));
+	if(who.toLowerCase().indexOf("edg-r")>-1) bot.say("chris30269", "oh hello there");
 });
 
 bot.addListener("message", function(from, to, text, message) {
