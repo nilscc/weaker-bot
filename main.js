@@ -73,6 +73,7 @@ var benchMoar = [
 	"BANCHBANCHBANCH"];
 var noLifts = [
 	"guilt", "shame", "baggage", "error 404", "nothing", "nada", "zip", "zilch"];
+var hiNombski = ["too many cooks", "how's the rash?", "nvm I'll tell you later, he's here"];
 
 var tells = {};
 var sotd = {
@@ -133,9 +134,10 @@ bot.addListener('error', function(message) {
 bot.addListener("join", function(channel, who) {
 	// Welcome them in!
 	console.log("who: ", who);
-	if(who.toLowerCase().indexOf("nombski")>-1) bot.say(channel, "too many cooks");
+	if(who.toLowerCase().indexOf("nombski")>-1) bot.say(channel, randomFromArray(hiNombski));
 	if(who.toLowerCase().toLowerCase() == "trefirefem") bot.say(channel, who+" "+randomFromArray(benchMoar));
 	if(who.toLowerCase().indexOf("edg-r")>-1) bot.say("chris30269", "oh hello there");
+	if(who.toLowerCase().indexOf("pannyworks")>-1) bot.say("chris30269", "panny is working");
 });
 
 bot.addListener("message", function(from, to, text, message) {
