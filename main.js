@@ -569,8 +569,7 @@ function dirtyWords(wordsToDefine) {
 			var definition = sample.list[0];
 			if (definition != undefined) {
 				var definition = sample.list[0].definition;
-				definition = definition.replace("[", "");
-				definition = definition.replace("]", "");
+				definition = definition.replace(/[\[\]]/g, "");
 				var defined = wordsToDefine.join(" ") + ": " + definition;
 				bot.say(config.channels[0], defined);
 			} else {
