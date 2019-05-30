@@ -443,8 +443,8 @@ bot.addListener("message", function (from, to, text, message) {
 		//..ud felching
 		//.u norway
 		if (splitup[1]) {
-			let wordToDefine = splitup.slice(1).join("+");
-			dirtyWords(wordToDefine);
+			let wordsToDefine = splitup.slice(1);
+			dirtyWords(wordsToDefine);
 		} else bot.say(config.channels[0], "give me a word to define, u luddite.");
 	}
 	if (message.args[1].toLowerCase().indexOf("for the greater good") > -1) {
@@ -556,8 +556,10 @@ function getCurrency(currencyString, currencySign) {
 	});
 }
 
-function dirtyWords(wordToDefine) {
-	var url = "http://api.urbandictionary.com/v0/define?term=" + wordToDefine;
+function dirtyWords(wordsToDefine) {
+
+	let mergedWords = wordsToDefine.join("+");
+	var url = "http://api.urbandictionary.com/v0/define?term=" + mergedWords;
 	request(url, function (err, response, body) {
 		if (err) {
 			console.log('error getting definition: ', error);
@@ -569,7 +571,7 @@ function dirtyWords(wordToDefine) {
 				var definition = sample.list[0].definition;
 				definition = definition.replace("[", "");
 				definition = definition.replace("]", "");
-				var defined = wordToDefine + " " + definition;
+				var defined = wordsToDefine.join(" ") + ": " + definition;
 				bot.say(config.channels[0], defined);
 			} else {
 				bot.say(config.channels[0], "idk, you figure it out nerd.");
