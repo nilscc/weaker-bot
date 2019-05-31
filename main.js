@@ -568,9 +568,11 @@ function dirtyWords(wordsToDefine) {
 			var sample = JSON.parse(body);
 			var definition = sample.list[0];
 			if (definition != undefined) {
-				var definition = randomFromArray(sample.list).definition;
+				var definition = randomFromArray(sample.list);
+				var word = definition.word;
+				definition = definition.definition;
 				definition = definition.replace(/[\[\]]/g, "");
-				var defined = wordsToDefine.join(" ") + ": " + definition;
+				var defined = word + ": " + definition;
 				bot.say(config.channels[0], defined);
 			} else {
 				bot.say(config.channels[0], "idk, you figure it out nerd.");
