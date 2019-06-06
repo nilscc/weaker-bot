@@ -137,7 +137,6 @@ bot.addListener("join", function (channel, who) {
 	if (who.toLowerCase().indexOf("nombski") > -1) bot.say(channel, randomFromArray(hiNombski));
 	if (who.toLowerCase().toLowerCase() == "trefirefem") bot.say(channel, who + " " + randomFromArray(benchMoar));
 	if (who.toLowerCase().indexOf("edg-r") > -1) bot.say("chris30269", "oh hello there");
-	if (who.toLowerCase().indexOf("pannyworks") > -1) bot.say("chris30269", "panny is working");
 });
 
 bot.addListener("message", function (from, to, text, message) {
