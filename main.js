@@ -174,7 +174,7 @@ bot.addListener("message", function (from, to, text, message) {
 	}
 	if (splitup[0].toLowerCase() == "..dab" || splitup[0].toLowerCase() == "!dab" || splitup[0].toLowerCase() == ".dab") {
 		if (splitup[1]) {
-			bot.action(config.channels[0], "dabs on " + splitup[1] + " " + randomFromArray(dabEmojis));
+			bot.action(config.channels[0], "dabs on " + splitup.slice(1) + " " + randomFromArray(dabEmojis));
 		} else bot.action(config.channels[0], "dabs on " + from + " " + randomFromArray(dabEmojis));
 	}
 	if (splitup[0].toLowerCase() == "..sotd" || splitup[0].toLowerCase() == "sotd" || splitup[0].toLowerCase() == "!sotd" || splitup[0].toLowerCase() == ".sotd") {
