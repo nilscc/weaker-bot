@@ -165,11 +165,11 @@ bot.addListener("message", function (from, to, text, message) {
 	if (splitup[0].toLowerCase() == "..insult" || splitup[0].toLowerCase() == "!insult" || splitup[0].toLowerCase() == ".insult") {
 		if (splitup[1]) {
 			bot.say(config.channels[0], splitup[1] + ", " + randomFromArray(insults));
-		} else bot.say(config.channels[0], from + ", " + randomFromArray(insults));
+		} else bot.say(config.channels[0], from + " " + randomFromArray(insults));
 		return;
 	}
 	if (splitup[0].toLowerCase() == "..help" || splitup[0].toLowerCase() == "!help" || splitup[0].toLowerCase() == ".help") {
-		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ currency, ..ud word");
+		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ currency, ..ud word, ..weather city/code, country code");
 		return;
 	}
 	if (splitup[0].toLowerCase() == "..dab" || splitup[0].toLowerCase() == "!dab" || splitup[0].toLowerCase() == ".dab") {
