@@ -1,6 +1,6 @@
 const config = {
 	channels: ["##weakpots"],
-	server: "chat.freenode.net",
+	server: "irc.libera.chat",
 	botName: "weakerbot",
 	password: "weakness420"
 };
@@ -88,7 +88,7 @@ const request = require('request');
 config.url = "mongodb://127.0.0.1:27017/weakdb";
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
-// var bot = new irc.Client("chat.freenode.net", "weakerbot", {
+// var bot = new irc.Client("irc.libera.chat", "weakerbot", {
 // 	channels: ["#weakpots"],
 // 	realName: 'rowbutt',
 // 	debug: true,
@@ -99,7 +99,7 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "S
 // 	nick: 'weakerbot'
 // });
 
-const bot = new irc.Client("chat.freenode.net", "weakerbot", {
+const bot = new irc.Client("irc.libera.chat", "weakerbot", {
 	realName: 'rowbutt',
 	debug: true,
 	showErrors: true,
