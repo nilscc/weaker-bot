@@ -150,8 +150,18 @@ bot.addListener("message", function (from, to, text, message) {
 		bot.say(config.channels[0], message.nick + " " + randomFromArray(bulk));
 		counter.lari = 0;
 	}
-	// console.log("message: ", message);
+	//console.log("message: ", message);
 	var splitup = message.args[1].split(" ");
+
+    if (message.args[1].toLowerCase().trim() == "is it friday yet?") {
+        var d = new Date();
+        if (d.getDay() == 5)
+            bot.say(message.args[0], "Yes!");
+        else
+            bot.say(message.args[0], "No.");
+        return;
+    }
+
 	if (splitup[0].toLowerCase() == "..ping" || splitup[0].toLowerCase() == "!ping" || splitup[0].toLowerCase() == ".ping") {
 		bot.say(config.channels[0], message.nick + " pong, " + randomFromArray(pongs));
 		lastPerson = message.nick;
@@ -162,21 +172,25 @@ bot.addListener("message", function (from, to, text, message) {
 		bot.say(config.channels[0], "🎵" + randomFromArray(songs) + "🎵");
 		return;
 	}
+
 	if (splitup[0].toLowerCase() == "..insult" || splitup[0].toLowerCase() == "!insult" || splitup[0].toLowerCase() == ".insult") {
 		if (splitup[1]) {
 			bot.say(config.channels[0], splitup[1] + ", " + randomFromArray(insults));
 		} else bot.say(config.channels[0], from + " " + randomFromArray(insults));
 		return;
 	}
+
 	if (splitup[0].toLowerCase() == "..help" || splitup[0].toLowerCase() == "!help" || splitup[0].toLowerCase() == ".help") {
 		bot.say(config.channels[0], "..ping, ..sing, ..insult [name], ..dab [name], ..tell nick message, ..sotd [link], ..lifts [who] [lift] [[weight units reps]], ..$ currency, ..ud word, ..weather city/code, country code");
 		return;
 	}
+
 	if (splitup[0].toLowerCase() == "..dab" || splitup[0].toLowerCase() == "!dab" || splitup[0].toLowerCase() == ".dab") {
 		if (splitup[1]) {
 			bot.action(config.channels[0], "dabs on " + splitup.slice(1) + " " + randomFromArray(dabEmojis));
 		} else bot.action(config.channels[0], "dabs on " + from + " " + randomFromArray(dabEmojis));
 	}
+
 	if (splitup[0].toLowerCase() == "..sotd" || splitup[0].toLowerCase() == "sotd" || splitup[0].toLowerCase() == "!sotd" || splitup[0].toLowerCase() == ".sotd") {
 		if (splitup[1] == undefined) {
 			if ((sotd.time + (60.0 * 60.0 * 8.0)) < (Date.now() / 1000.0)) {
