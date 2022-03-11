@@ -1,13 +1,13 @@
 {
+  "type": "module",
   "dependencies": {
     "irc": "^0.5.2",
-    "mongodb": "^2.2.32",
-    "request": "^2.83.0"
+    "mongodb": "^4.4.1",
+    "node-fetch": "^3.2.2"
   },
   "name": "weaker-bot",
   "version": "1.0.0",
   "main": "main.js",
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

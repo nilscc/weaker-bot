@@ -82,9 +82,24 @@ const sotd = {
 	"who": "yo momma"
 };
 
-const irc = require("irc");
-const MongoClient = require('mongodb').MongoClient;
-const request = require('request');
+import irc from "irc";
+import { MongoClient } from 'mongodb';
+
+import fetch from 'node-fetch';
+
+async function request(url, cb) {
+    var resp = await fetch(url);
+    var body = null;
+    var err = null;
+    if (resp.ok)
+        body = await resp.text();
+    else
+        err = resp.statusText;
+
+    // run final callback
+    cb(err, resp, body);
+}
+
 config.url = "mongodb://127.0.0.1:27017/weakdb";
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
