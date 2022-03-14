@@ -99,7 +99,7 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "S
 // 	nick: 'weakerbot'
 // });
 
-const bot = new irc.Client(config.server config.botName, {
+const bot = new irc.Client(config.server, config.botName, {
 	realName: 'rowbutt',
 	debug: true,
 	showErrors: true,
