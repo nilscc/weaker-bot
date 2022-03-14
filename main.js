@@ -1,9 +1,4 @@
-const config = {
-    channels: ["##weakpots"],
-    server: "irc.libera.chat",
-    botName: "weakerbot",
-    password: "weakness420"
-};
+import config from "./config.js"
 
 const rebuke = ["bitch you thought", "no", "I'm tired of you", "yeah no", "what if you didn't"];
 const pongs = ["ya bitch", "ya dingus", "ya weakling", "ya ugly ass"];
@@ -358,7 +353,7 @@ function epley(w, r) {
 }
 
 function getWeather(where) {
-    var appid = "805cb9224e234f59790387b5fb26579d";
+    var appid = config.openWeatherToken;
     var url = "http://api.openweathermap.org/data/2.5/weather?q=" + where + "&units=metric&appid=" + appid;
     request(url, function (err, response, body) {
         if (err) {

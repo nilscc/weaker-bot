@@ -2,3 +2,4 @@ node_modules/
 *.conf
 *.swp
 package-lock.json
+config.js
