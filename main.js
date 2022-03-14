@@ -99,14 +99,14 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "S
 // 	nick: 'weakerbot'
 // });
 
-const bot = new irc.Client("chat.freenode.net", "weakerbot", {
+const bot = new irc.Client(config.server config.botName, {
 	realName: 'rowbutt',
 	debug: true,
 	showErrors: true,
 	autoConnect: false,
 	username: "weakerbot",
 	nick: "weakerbot",
-	password: "weakness420"
+	password: config.password
 });
 bot.connect(function () {
 	console.log("Connected!");
