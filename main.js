@@ -111,15 +111,16 @@ const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "S
 //  nick: 'weakerbot'
 // });
 
-const bot = new irc.Client("irc.libera.chat", "weakerbot", {
-    realName: 'rowbutt',
+const bot = new irc.Client(config.server, config.botName, {
+    realName: config.botName,
     debug: true,
     showErrors: true,
     autoConnect: false,
-    username: "weakerbot",
-    nick: "weakerbot",
-    password: "weakness420"
+    username: config.botName,
+    nick: config.botName,
+    password: config.password
 });
+
 bot.connect(function () {
     console.log("Connected!");
     bot.say("nickserv", "identify " + config.password);
