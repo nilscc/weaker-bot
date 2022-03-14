@@ -3,5 +3,5 @@ export default {
     server: "irc.libera.chat",
     botName: "weakerbot",
     password: "weakness420",
-    openWeatherToken: ""
+    openWeatherToken: "" // get from https://home.openweathermap.org/api_keys
 };
