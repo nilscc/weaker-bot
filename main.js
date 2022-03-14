@@ -1,6 +1,6 @@
 const config = {
 	channels: ["##weakpots"],
-	server: "chat.freenode.net",
+	server: "irc.libera.chat",
 	botName: "weakerbot",
 	password: "weakness420"
 };
