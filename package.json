@@ -2,7 +2,7 @@
   "type": "module",
   "dependencies": {
     "irc": "^0.5.2",
-    "mongodb": "^4.4.1",
+    "sqlite": "^4.0.25",
     "node-fetch": "^3.2.2"
   },
   "name": "weaker-bot",
