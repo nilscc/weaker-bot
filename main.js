@@ -263,7 +263,9 @@ bot.addListener("message", function (from, to, text, message) {
     // TODO: ..lift
 
     // check unread ..tell messages
-    tell.checkUnread(from);
+    tell.checkUnread(from, (message) => {
+        bot.say(to, message);
+    });
 
     if (splitup[0].toLowerCase() == "..tell" || splitup[0].toLowerCase() == "!tell" || splitup[0].toLowerCase() == ".tell") {
         if (splitup[1] && splitup[1].toLowerCase().indexOf("bot") > -1 && splitup[1].toLowerCase().indexOf("ferboten") < 0) {
@@ -273,7 +275,7 @@ bot.addListener("message", function (from, to, text, message) {
         if (!splitup[1] || !splitup[2]) {
             bot.say(config.channels[0], message.nick + " not enough arguments. Eg ..tell trefirefem Do you bench 2pl8 yet?");
         } else {
-            var to = splitup[1].toLowerCase(); //sanitize this? idk
+            var to = splitup[1]; //sanitize this? idk
             var msg = splitup.slice(2); //sanitize this too?
             //accept and escape special chars
             msg = msg.join(" ");
@@ -326,15 +328,6 @@ function randomFromArray(array) {
     return array[Math.floor(Math.random() * array.length)];
 }
 
-function localTime(who, when) {
-    //lookup who's local time zone
-    var date = new Date(when * 1000);
-    if ((Date.now()) - date > (1000 * 60 * 60 * 12)) {
-        var dateString = " [" + date.getDate() + " " + monthNames[date.getMonth()] + " " + date.getHours() + ":" + (date.getMinutes() < 10 ? '0' : '') + date.getMinutes() + "]";
-    } else var dateString = '';
-    return dateString;
-}
-
 function timeDifference(time) {
     var msec = ((sotd.time + (60.0 * 60.0 * 8.0)) * 1000.0) - Date.now();
     var hours = Math.floor(msec / 1000 / 60 / 60);
@@ -355,6 +348,7 @@ function epley(w, r) {
 function getWeather(where) {
     var appid = config.openWeatherToken;
     var url = "http://api.openweathermap.org/data/2.5/weather?q=" + where + "&units=metric&appid=" + appid;
+    console.log(url);
     request(url, function (err, response, body) {
         if (err) {
             console.log('error getting weather:', err);

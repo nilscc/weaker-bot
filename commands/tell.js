@@ -1,67 +1,30 @@
-import {} from "sqlite";
+import { client } from '../db.js'
 
-function deleteTell() {
-    console.log('deleteTell');
+export async function create(from, to, message) {
+    const c = client();
+    console.log("create message " + from + " -> " + to + ": " + message);
 
-    // TODO:
-	// MongoClient.connect(config.url, function (err, db) {
-	// 	if (err) throw err;
-	// 	db.collection("tells").deleteOne({"_id": tell._id}, function (err, res) {
-	// 		if (err) throw err;
-	// 		console.log("deleted tell");
-	// 		console.log(tell);
-	// 		db.close();
-	// 	});
-	// });
+    await c.query('insert into tells ("from", "to", message) values ($1, $2, $3)',
+        [ from, to, message ]);
+
+    await c.end();
 }
 
-export function create(from, to, message) {
-    console.log("delete message " + from + " -> " + to + ": " + message);
+export async function checkUnread(user, say) {
+    const c = client();
+    const r = await c.query('select * from tells where lower("to") = $1', [user.toLowerCase()])
 
-    // TODO:
-	// var tell = {
-	// 	"from": from,
-	// 	"to": to,
-	// 	"time": Date.now() / 1000.0,
-	// 	"msg": msg
-	// };
-	// //store it
-	// // if(tells[to]){
-	// // 	tells[to].push(tell);
-	// // }
-	// // else{
-	// // 	tells[to] = [tell];
-	// // }
-	// // bot.say(config.channels[0], tell.from+", OK I'll try, but don't count on it. This is beta af");
-	// MongoClient.connect(config.url, function (err, db) {
-	// 	if (err) throw err;
-	// 	db.collection("tells").insertOne(tell, function (err, res) {
-	// 		if (err) throw err;
-	// 		console.log("stored tell");
-	// 		console.log(tell);
-	// 		db.close();
-	// 		bot.say(config.channels[0], tell.from + ", OK got it");
-	// 	});
-	// });
+    for (let t of r.rows) {
+        const ft = isToday(t.date) ? t.date.toLocaleTimeString() : t.date.toLocaleString();
+
+        say(user + ': message from ' + t.from + ' (' + ft + '): ' + t.message);
+        await c.query('delete from tells where id = $1', [t.id]);
+    }
+
+    await c.end();
 }
 
-export function checkUnread(from) {
-	console.log("check msg for "+from);
-
-    // TODO:
-	// var oldFrom = from;
-	// from = from.toLowerCase();
-	// MongoClient.connect(config.url, function (err, db) {
-	// 	if (err) throw err;
-	// 	db.collection("tells").findOne({"to": from}, function (err, res) {
-	// 		if (err) throw err;
-	// 		db.close();
-	// 		if (res !== null && res !== undefined) {
-	// 			console.log("unread tell");
-	// 			console.log(res);
-	// 			bot.say(config.channels[0], from + " message from " + res.from + "" + localTime(res.to, res.time) + ": " + res.msg);
-	// 			deleteTell(res);
-	// 		}
-	// 	});
-	// });
+function isToday(date) {
+    const n = new Date();
+    return date.getFullYear() == n.getFullYear() && date.getMonth() == n.getMonth() && date.getDate() == n.getDate();
 }
