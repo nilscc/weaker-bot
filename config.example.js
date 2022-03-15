@@ -5,6 +5,6 @@ export default {
     channels: ["##weakpots"],
     server: "irc.libera.chat",
     botName: "weakerbot",
-    password: "weakness420",
+    password: "", // your nickserv password
     openWeatherToken: "" // get from https://home.openweathermap.org/api_keys
 };
