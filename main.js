@@ -275,13 +275,15 @@ bot.addListener("message", function (from, to, text, message) {
         if (!splitup[1] || !splitup[2]) {
             bot.say(config.channels[0], message.nick + " not enough arguments. Eg ..tell trefirefem Do you bench 2pl8 yet?");
         } else {
-            var to = splitup[1]; //sanitize this? idk
+            var msg_to = splitup[1]; //sanitize this? idk
             var msg = splitup.slice(2); //sanitize this too?
             //accept and escape special chars
             msg = msg.join(" ");
 
             // store message in database
-            tell.create(from, to, msg);
+            tell.create(from, msg_to, msg);
+
+            bot.say(to, from + ': OK got it');
         }
     }
 
