@@ -95,17 +95,6 @@ async function request(url, cb) {
 
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
 
-// var bot = new irc.Client("irc.libera.chat", "weakerbot", {
-//  channels: ["#weakpots"],
-//  realName: 'rowbutt',
-//  debug: true,
-//  showErrors: true,
-//  sasl: true,
-//  password: 'weakness420',
-//  username: 'weakerbot',
-//  nick: 'weakerbot'
-// });
-
 const bot = new irc.Client(config.server, config.botName, {
     realName: config.botName,
     debug: true,
