@@ -363,7 +363,7 @@ function getCurrency(currencyString, currencySign) {
     var url = "https://free.currencyconverterapi.com/api/v6/convert?q=" + currencySign + "_USD&compact=ultra&apiKey=" + appid;
     request(url, function (err, response, body) {
         if (err) {
-            console.log('error converting currency:', error);
+            console.log('error converting currency:', err);
         } else {
             console.log('currency converted:', body);
             var sample = JSON.parse(body);
@@ -385,7 +385,7 @@ function dirtyWords(wordsToDefine) {
     var url = "http://api.urbandictionary.com/v0/define?term=" + mergedWords;
     request(url, function (err, response, body) {
         if (err) {
-            console.log('error getting definition: ', error);
+            console.log('error getting definition: ', err);
         } else {
             // console.log('Urban Dictionary Definition:', body);
             var sample = JSON.parse(body);
