@@ -69,6 +69,12 @@ const benchMoar = [
 const noLifts = [
     "guilt", "shame", "baggage", "error 404", "nothing", "nada", "zip", "zilch"];
 const hiNombski = ["too many cooks", "how's the rash?", "nvm I'll tell you later, he's here"];
+const bulkMoar = [
+    "how is the bulk going?",
+    "have you eaten your cheese?",
+    "pls eat",
+    "don't over-optimize (yet)",
+    "I hope you're feeling HUNGARY my child"];
 
 const sotd = {
     "time": 0,
@@ -133,7 +139,7 @@ bot.addListener("join", function (channel, who) {
     console.log("who: ", who);
     if (who.toLowerCase().indexOf("nombski") > -1) bot.say(channel, randomFromArray(hiNombski));
     if (who.toLowerCase().toLowerCase() == "trefirefem") bot.say(channel, who + " " + randomFromArray(benchMoar));
-    if (who.toLowerCase().indexOf("edg-r") > -1) bot.say("chris30269", "oh hello there");
+    if (who.toLowerCase().toLowerCase() == "noob_tea[m]") bot.say(channel, who + " " + randomFromArray(bulkMoar));
 });
 
 bot.addListener("message", function (from, to, text, message) {
